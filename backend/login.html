@@ -1,0 +1,97 @@
+<html>
+
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <script type="text/javascript" src="<?php echo javascript_url; ?>jquery-<?php echo get_config('jquery:version'); ?>.min.js"></script>
+
+        <link type="text/css" href="<?php echo javascript_url; ?>ui/css/base/ui.all.css" rel="stylesheet" />
+        <link type="text/css" href="<?php echo javascript_url; ?>ui/css/flick/jquery-ui-<?php echo get_config('jquery:uiversion'); ?>.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="<?php echo javascript_url; ?>ui/jquery-ui-<?php echo get_config('jquery:uiversion'); ?>.custom.min.js"></script>
+        <style type="text/css">
+            #button { padding: .5em 1em; text-decoration: none; }
+            label, input { display:block; }
+            input.text { margin-bottom:12px; width:95%; padding: .4em; }
+            fieldset { padding:0; border:0; margin-top:25px; }
+            .ui-button { outline: 0; margin:0; padding: .4em 1em .5em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; }
+            #resizable { width: 300px; height: 250px; padding: 0.5em;}
+            #resizable h3 { text-align: center; margin: 0; }
+        </style>
+
+        <script type="text/javascript">
+            $(function() {
+
+                $("#data").submit( function(){
+                    var url_send = "<?php echo actions_url; ?>admin.php";
+
+                    var mail = $("input#name").val();
+                    var psw = $("input#password").val();
+
+                    var vars = "action=login&email=" + mail + "&psw=" + psw;
+                    $.ajax({
+                        type: "POST",
+                        url: url_send,
+                        data: vars,
+                        success: function(html) {
+                            $("#response").fadeIn('slow');
+                            if( html.indexOf("<login: ok>") != -1 ) {
+                                window.location.href = "<?php echo base_url; ?>admin.php";
+                            } else {
+                                $("#response").text(html);
+                            }
+                            setTimeout(function() {
+                                $("#response").fadeOut('slow');
+                            }, 2000);
+                        }
+                    });
+                    return false;
+                });
+
+                /*$("#login").click(function() {
+                    var url_send = "<?php echo actions_url; ?>admin.php";
+
+                    var mail = $("input#name").val();
+                    var psw = $("input#password").val();
+
+                    var vars = "action=login&email=" + mail + "&psw=" + psw;
+                    $.ajax({
+                        type: "POST",
+                        url: url_send,
+                        data: vars,
+                        success: function(html) {
+                            $("#response").fadeIn('slow');
+                            if( html.indexOf("<login: ok>") != -1 ) {
+                                window.location.href = "<?php echo base_url; ?>admin.php";
+                            } else {
+                                $("#response").text(html);
+                            }
+                            setTimeout(function() {
+                                $("#response").fadeOut('slow');
+                            }, 2000);
+                        }
+                    });
+                    return false;
+
+                });*/
+            });
+        </script>
+
+    </head>
+    <body>
+        <div align="center">
+            <div id="resizable" class="ui-widget-content">
+                <h3 class="ui-widget-header">Ingreso</h3>
+                <form id="data" method="post">
+                    <label for="name">Email</label>
+                    <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+                    <input type="submit" id="login" value="Ingresar" class="ui-button ui-state-default ui-corner-all" />
+                </form>
+                <div id="response"></div>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<?php include("header.html"); ?>
+<style type="text/css" media="screen">
+    <!--
+    @import url("<? echo template_url; ?>css-library/concursos.css");
+    @import url("<? echo template_url; ?>css-library/audioblog.css");
+    @import url("<? echo template_url; ?>css-library/red.css");
+    -->
+</style>
+
+<div id="ContMain">
+    <div>
+        <div id="Main">
+            <div style="position:relative; width:960px">
+                <div id="ContProgHome">
+                    <div class="CornerLeft" id="CornerProgHome"></div>
+                    <div id="ProgHome">
+                    </div>
+                    <div style="position:relative; float:left; margin:0; width:940px; background-color:#FFF; padding:5px">
+                        <div id="ColCentral">
+                            <div id="ModCentralRed">
+                                <div id="ColIzq">
+                                    <?php load_module_with_param("intheair/main.php","vertical"); ?>
+                                    <div id="Skyscrapper"><a href="<?php echo get_config('banner:verticallink'); ?>"><img src="<?php echo get_config('banner:160x600'); ?>" alt="Iphone" width="160" height="600" class="Btn" /></a></div>
+                                </div>
+                                <div id="MainBlog">
+                                    <div id="ListadoPosts">
+                                        <div style="background-image: url(<?php echo template_url; ?>imgs/te-escuchamos/title-te-escuchamos.jpg); width:322px; height:26px; background-repeat:no-repeat; margin:0 0 20px 0; text-indent:-9999px;"></div>
+                                        <?php load_module("blogpost"); ?>
+                                    </div>
+                                    <div id="PlayerPodcastsBlog">
+                                    <?php if( $_GET['url'] != "helpyou" && $_GET['url'] != "hearyou" ) { ?>
+                                        <?php load_module("podcast_audioblog"); ?>
+                                    <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="ColDerIn">
+                            <?php load_module("twitter_mod"); ?>
+                            <?php load_module("flickr_mod"); ?>
+                            <?php load_module("facebook_mod"); ?>
+                        </div>
+                    </div>
+                    <div class="CornerRight" id="CornerProgHome"></div>
+                </div>
+            </div>
+            <div style="position:relative; width:950px; padding:1px 5px 0 5px; margin:0;">
+                <?php load_module("adsense"); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include("footer.html"); ?>

@@ -1,0 +1,33 @@
+<? include("videos.php"); ?>
+<style type="text/css" media="screen">
+    <!--
+    @import url("<? echo modules_url . '/video_home/'; ?>style.css");
+    -->
+</style>
+<div id="VideoHome">
+    <h2>VIDEO</h2>
+    <!--<h3>Lorem ipsum dolor sit amet.</h3>-->
+    <div style="width:420px; position:relative; float:left; padding:5PX 0 0 33px">
+        <div id="HolderVideo">
+            <object width="420" height="267">
+                <param name="movie" value="<?php echo get_config('home:video1'); ?>" />
+                <param name="allowFullScreen" value="true" />
+                <param name="allowscriptaccess" value="always" />
+                <embed src="<?php echo get_config('home:video1'); ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="420" height="267">
+            </object>
+        </div>
+        <div id="InfoTextoVideoHome">
+            <!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>-->
+        </div>
+        <div id="VideosRelacionadosHome">
+            <h4>Videos relacionados:</h4>
+            <div id="ThumbVideosHome">
+                <div id="thumbVideo"><a style="cursor: pointer;" onclick="$('#HolderVideo').load('<?php echo actions_url; ?>homevideo.php?number=1');"><img src="<? echo get_config('home:imgvideo1'); ?>" alt="video" width="129" height="71" class="Btn" /></a></div>
+                <div class="thumbVideoCentro" id="thumbVideo"><a style="cursor: pointer;" onclick="$('#HolderVideo').load('<?php echo actions_url; ?>homevideo.php?number=2');"><img src="<? echo get_config('home:imgvideo2'); ?>" alt="video" width="129" height="71" class="Btn" /></a></div>
+                <div id="thumbVideo"><a style="cursor: pointer;" onclick="$('#HolderVideo').load('<?php echo actions_url; ?>homevideo.php?number=3');"><img src="<? echo get_config('home:imgvideo3'); ?>" alt="video" width="129" height="71" class="Btn" /></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

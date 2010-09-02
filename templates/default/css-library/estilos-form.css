@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+body {background-color:#fff; font-family:Arial, Helvetica, sans-serif; margin:0; padding:0; height:100%;
+}
+p { color: #737373; font-size:11px; margin:0;
+}
+p a{ text-decoration:none;
+}
+h2 { font-family: Tahoma, Geneva, sans-serif; font-size:20px; color:#333; font-weight:normal; margin:0;
+}
+h3 { font-family: Tahoma, Geneva, sans-serif; font-size:14px; color:#333; font-weight:bold; margin:0;
+}
+h4 { font-family: Tahoma, Geneva, sans-serif; font-size:12px; color:#000; font-weight:bold; margin:0;
+}
+h5 { font-family: Tahoma, Geneva, sans-serif; font-size:11px; color:#000; font-weight:normal; margin:0;
+}
+.BtnCancelar { background-color:#666; border:none; color:#FFF;
+}
+.BtnGuardar { background-color: #06C; border:none; color:#FFF;
+}
+#EditartAudio { position:relative; width:505px; float:left; margin:0 0 20px 0;
+}
+#EditartAudioLeft { position:relative; width:232px; float:left; margin:0 20px 0 0;
+}
+#EditartAudioRight { position:relative; width:242px; float:left;
+}
+.AreaTexto { width:232px; position:relative;
+}
+.AreaCampo { width:232px; position:relative;
+}
+.BtnCancelar { background-color:#666; border:none; color:#FFF; width:80px;
+}
+.BtnGuardar { background-color: #06C; border:none; color:#FFF; width:80px;
+}
+

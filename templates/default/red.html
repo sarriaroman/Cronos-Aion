@@ -1,0 +1,63 @@
+<? include("header.html"); ?>
+<style type="text/css" media="screen">
+<!--
+@import url("<? echo template_url; ?>css-library/red.css");
+@import url("<? echo template_url; ?>css-library/ColumnaRight.css");
+@import url("<? echo template_url; ?>css-library/adsense.css");
+-->
+</style>
+<div id="ContMain">
+  <div>
+    <div id="Main">
+      <div style="position:relative; width:960px">
+        <div id="ContProgHome">
+          <div class="CornerLeft" id="CornerProgHome"></div>
+              <div id="ProgHome">
+                <div style="position:relative; float:left; width:850px; margin:0; padding:30px">
+                  <div class="Soy" id="ModAfiliada">
+                <div style="width:361px; position:relative; float:left; margin:0">
+                    <h2>SOY AFILIADA</h2>
+                </div>
+                <div style="width:361px; position:relative; float:left; margin:10px 0 10px 0">
+                    <? system_message("red:welcomemessage"); ?>
+                </div>
+                <div style="width:361px; position:relative; float:left; margin:0"><img src="<? echo template_url; ?>imgs/red/pic-afiliada.jpg" width="311" height="212" /></div>
+                <div id="ContLogin">
+                      <h4><? system_message("red:login"); ?></h4>
+                      <p><? system_message("red:mail"); ?></p>
+                      <form action="<?php echo base_url; ?>index.php?url=red" method="post">
+                      <input name="email" type="text" />
+                      <p><? system_message("red:password"); ?></p>
+                      <input name="psw" type="password" />
+                      <? if( !empty($error_message) ) { echo "<p id='error'>" . $error_message . "</p>"; } ?>
+                      <input name="Enviar" type="submit" class="btnLogin" value="enviar" />
+                      </form>
+                      <div style="position:relative; float:left; margin:10px 0 0 0; width:150px">
+                        <p><a href="#"><? system_message("red:remembermessage"); ?></a></p>
+                    </div>
+                </div>
+                </div>
+                  <div class="QuieroSer" id="ModAfiliada">
+                <div style="width:361px; position:relative; float:left; margin:0">
+                    <h2>SOY AFILIADA</h2>
+                </div>
+                <div style="width:361px; position:relative; float:left; margin:10px 0 10px 0">
+                    <? system_message("red:join"); ?>
+                </div>
+                <div style="width:361px; position:relative; float:left; margin:0"><img src="<? echo template_url; ?>imgs/red/pic-afiliarme.jpg" width="311" height="212" /></div>
+                <div style="width:361px; position:relative; float:left; margin:0">
+                	<? system_message("red:joininfo"); ?>
+                <div style="width:361px; position:relative; float:left; margin:10px 0 10px 0">
+                    <? system_message("red:moreinfo"); ?>
+                </div>
+                </div>
+                </div>
+            </div>
+              <div class="CornerRight" id="CornerProgHome"></div>
+        </div>
+      </div>
+      </div>
+  </div>
+  </div>
+</div>
+<? include("footer.html"); ?>

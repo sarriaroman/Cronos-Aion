@@ -1,0 +1,275 @@
+<?php
+// Protection
+if( !isset( $user ) ) {
+header( "Location: " . base_url . "admin.php" );
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="<?php echo javascript_url; ?>jquery-<?php echo get_config('jquery:version'); ?>.min.js"></script>
+
+        <link type="text/css" href="<?php echo javascript_url; ?>ui/css/base/ui.all.css" rel="stylesheet" />
+        <link type="text/css" href="<?php echo javascript_url; ?>ui/css/flick/jquery-ui-<?php echo get_config('jquery:uiversion'); ?>.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="<?php echo javascript_url; ?>ui/jquery-ui-<?php echo get_config('jquery:uiversion'); ?>.custom.min.js"></script>
+
+        <link type="text/css" href="<?php echo javascript_url; ?>jqtransform/jqtransform.css" rel="stylesheet" />
+        <script type="text/javascript" src="<?php echo javascript_url; ?>jqtransform/jquery.jqtransform.js"></script>
+
+        <!-- Editor de Texto -->
+        <script type="text/javascript" src="<?php echo javascript_url; ?>ckeditor/ckeditor.js"></script>
+        <script src="<?php echo javascript_url; ?>ckeditor/sample.js" type="text/javascript"></script>
+        <link href="<?php echo javascript_url; ?>ckeditor/sample.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript" src="<?php echo javascript_url; ?>jquery.qtip-1.0.0-rc3.min.js"></script>
+
+        <script src="<?php echo javascript_url; ?>jAlerts/jquery.alerts.js" type="text/javascript"></script>
+        <link href="<?php echo javascript_url; ?>jAlerts/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+
+        <script type="text/javascript">
+            $(function(){
+
+                $("form").jqTransform();
+
+                // Accordion
+                $("#accordion").accordion({ header: "h3" });
+
+                // Tabs
+                $('#tabs').tabs();
+
+                // Dialog
+                $('#dialog').dialog({
+                    autoOpen: false,
+                    width: 600,
+                    buttons: {
+                        "Ok": function() {
+                            $(this).dialog("close");
+                        },
+                        "Cancel": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+
+                // Dialog Link
+                $('#dialog_link').click(function(){
+                    $('#dialog').dialog('open');
+                    return false;
+                });
+
+                // Datepicker
+                $('#datepicker').datepicker({
+                    inline: true
+                });
+
+                // Slider
+                $('#slider').slider({
+                    range: true,
+                    values: [17, 67]
+                });
+
+                // Progressbar
+                $("#progressbar").progressbar({
+                    value: 20
+                });
+
+                $("#logout").click(function() {
+                    var url_send = "<?php echo actions_url; ?>admin.php";
+
+                    var vars = "action=logout";
+                    $.ajax({
+                        type: "POST",
+                        url: url_send,
+                        data: vars,
+                        success: function(html) {
+                            window.location.href = "<?php echo base_url; ?>admin.php";
+                        }
+                    });
+                });
+
+                var interval = setInterval(function()
+                {
+                    $('#timeandday').load('<?php echo actions_url; ?>admin.php?action=formatdaytime');
+                }, 1000);
+
+                //hover states on the static widgets
+                $('#dialog_link, ul#icons li').hover(
+                function() { $(this).addClass('ui-state-hover'); },
+                function() { $(this).removeClass('ui-state-hover'); }
+            );
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function() {
+                $('a[title]').qtip({
+                    style: {
+                        name: 'dark',
+                        tip: true,
+                        border: {
+                            width: 2,
+                            radius: 5,
+                            color: '#333333'
+                        }
+                    },
+                    position: {
+                        corner: {
+                            target: 'topMiddle',
+                            tooltip: 'bottomMiddle'
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            function deleteComment(id, section, text) {
+                jConfirm('Esta seguro que desea eliminar lo siguiente:\n\n' + text, 'Confirmación', function(r) {
+                    if( r ) {
+                        if( section == -1 ) {
+                            $('#posts').load("<?php echo actions_url; ?>admin.php?action=deletecomment&section=" + section + "&id=" + id);
+                        } else {
+                            $('#postshear').load("<?php echo actions_url; ?>admin.php?action=deletecomment&section=" + section + "&id=" + id);
+                        }
+                    }
+                });
+            };
+        </script>
+    </head>
+    <body>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Inicio</a></li>
+                <li><a href="#tabs-2">Menu</a></li>
+                <li><a href="#tabs-3">Te Ayudamos</a></li>
+                <li><a href="#tabs-4">Te Escuchamos</a></li>
+                <li><a href="#tabs-5">Programas</a></li>
+                <li><a href="#tabs-6">Perfiles</a></li>
+                <li><a href="#tabs-7">E-Mail</a></li>
+                <li><a href="#tabs-8">Varios</a></li>
+                <li><a id="logout">Log Out</a></li>
+                <a style="float: right; margin-right: 5px;" id="timeandday"></a>
+            </ul>
+            <div id="tabs-1">
+                <img src="<?php echo base_url . 'backend/'; ?>imgs/cronos.png" style="position:relative; float: right; right: 1px; bottom: 1px;" />
+                <span style="vertical-align:middle; text-align:center;">Bienvenido Administrador!!!</span>
+                <h3 class="ui-widget-header ui-corner-all">Registro de Cambios: Versiones y Actualizaciones</h3>
+                <span>Cambios y actualizaciones: <br/>
+                    (-) Version/Opción eliminada <br/>
+                    (+) Version/Opción añadida <br/><br/>
+                    jQuery:<br/>
+                    - 1.3.2<br/>
+                    + 1.4<br/><br/>
+                    Versionado:<br/>
+                    + Cambios via Panel Administrativo<br/>
+                    Programación:<br/>
+                    + Edición del Horario<br/><br/>
+                    <h3 class="ui-widget-header ui-corner-all">Nuevos cambios ( 19/01/2010 )</h3>
+                    AudioBlogs:<br/>
+                    + Solo se muestra el enlace para acceder a los audioblogs que posean posts<br/>
+                    + Optimización del codigo para mayor estabilidad<br/><br/>
+                    Panel Administrativo:<br/>
+                    + Correcciones varias y optmimizacion del codigo.<br/>
+                    + Optimización de los estilos.<br/>
+                    + Posibilidad de habilitar/deshabilitar el mostrar todos los audioblos en Programación.<br/><br/>
+                    Red:<br/>
+                    + Nuevo menu de usuario.<br/>
+                    + Sistema de podcast reescrito.<br/>
+                    + La quota ahora es ilimitada si el usuario es administrador.<br/>
+                    - Eliminado link de acceso a la administración de audioblogs.<br/>
+                    + Se añade botón para ingresar a administrar los audioblos.<br/><br/>
+                    jQuery y UI:<br/>
+                    + Correción de llamados.<br/>
+                    + Creación de una sola carpeta para rapida actualización.<br/>
+                    + Unificación de estilos.<br/>
+                    + Cambio de versión mediante Panel de Administración.<br/><br/>
+                    Correcciones y Optimizaciones:<br/>
+                    + Corrección del home.<br/>
+                    + Corrección del modulo de Videos.<br/>
+                    + Corrección de errores varios.<br/>
+                    + Optimizaciones varias en el codigo.<br/>
+                    + Fix realizado al modulo de LogIn.<br/><br/>
+                    <h3 class="ui-widget-header ui-corner-all">Nuevos cambios ( 21/01/2010 )</h3>
+                    Cambios Varios:<br/>
+                    + Carga de datos personales, se mejoro el sistema de carga de imagenes personales<br/>
+                    + En subida de podcast en vez de recargar el sitio, se borran los campos y se recarga la lista de podcast personales con ajax.<br/>
+                    + En la lista de más escuchados ahora se muestra la cantidad de escuchas de cada podcast.<br/><br/>
+                    <h3 class="ui-widget-header ui-corner-all">Nuevos cambios ( 29/01/2010 )</h3>
+                    Sala de chat:<br/>
+                    - Se elimina el cuadro Concursos de el modulo community<br/>
+                    + Se agrega el cuadro Chat en el modulo community<br/>
+                    + Se incorpora una sala de chat con integración con cuenta facebook.<br/>
+                    + Configuraciones en la pestaña varios del Panel de Administración.<br/><br/>
+                    jQuery:<br/>
+                    + Se hace upgrade a version 1.4.1 para corregir bugs varios.<br/>
+                    <h3 class="ui-widget-header ui-corner-all">Nuevos cambios ( 04/02/2010 )</h3>
+                    Sala de chat:<br/>
+                    + Se reescribe el motor.<br/>
+                    + Se reescribe la integracion con Facebook Connect por cambios en Facebook.<br/>
+                    + Se agregan codigos para formatear el texto basados en el estandar BBCode.<br/><br/>
+                    CVC TV:<br/>
+                    + Se agrega el modulo TV a la plataforma.<br/>
+                    Home:<br/>
+                    + Se agrega reloj al modulo de programación.<br/>
+                    + Se añade el codigo para que se seleccione automaticamente el dia actual.<br/>
+                    Contacto:<br/>
+                    - Se eliminan los datos de Argentina.<br/>
+                    Podcast y Emisión online:<br/>
+                    + Se efectuaron multiples fix a errores al reproductor.<br/>
+                    + Se cambia el reproductor para iphone en la escucha de Podcast.<br/>
+                    Panel de Administración:<br/>
+                    + Se reescribe cuasi completo para optimizarlo.<br/>
+                    + Se agregan los botones de edición.<br/>
+                    + Se agregan los cuadros de dialogo.<br/>
+                    + Se agregan textos para identificar los botones.<br/>
+                    + Se cambia el texto Afiliadad por Perfiles.<br/><br/>
+                    <h3 class="ui-widget-header ui-corner-all">Acualizaciones ( 05/02/2010 )</h3>
+                    Sala de chat:<br/>
+                    + Actualización automatica del texto hace X tiempo en los mensajes.<br/>
+                    + Correciones en la estabilidad.<br/>
+                    Home:<br/>
+                    + Se agregaron los links a Te ayudamos y Te escuchamos en el modulo de comunidad.<br/><br/>
+                    <h3 class="ui-widget-header ui-corner-all">Versiones de Prueba</h3>
+                    Blogs:<br/>
+                    + Marcadores Sociales.<br/>
+                    + Post separados con link directo.<br/>
+                    (-) Todo lo indicado en esta sección esta a modo de prueba y puede que sea eliminado.<br/><br/>
+                </span>
+            </div>
+            <div id="tabs-2">
+                <?php input("Inicio", "menuhome", "menu:home"); ?>
+                <?php input("Institucional", "menuinstitutional", "menu:institutional"); ?>
+                <?php input("Programación", "menuprogrammes", "menu:programmes"); ?>
+                <?php input("Te ayudamos", "menuhelpyou", "menu:wehelp"); ?>
+                <?php input("Te escuchamos", "menuhearyou", "menu:welisten"); ?>
+                <?php input("Red", "menured", "menu:red"); ?>
+                <?php input("Contacto", "menucontact", "menu:contact"); ?>
+            </div>
+            <div id="tabs-3">
+                <?php include("tab_helpyou.html"); ?>
+            </div>
+            <div id="tabs-4">
+                <?php include("tab_hearyou.html"); ?>
+            </div>
+            <div id="tabs-5">
+                <?php include("programs.html"); ?>
+            </div>
+            <div id="tabs-6">
+                <?php include("profile.html"); ?>
+            </div>
+            <div id="tabs-7">
+                <!--<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+                    <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span> 
+                        <strong>Atención!</strong> Esta sección esta en construcción y pronto estará disponible</p>
+                </div>-->
+                <?php include("email.html"); ?>
+            </div>
+            <div id="tabs-8">
+                <?php include("anothers.html"); ?>
+            </div>
+        </div>
+    </body>
+</html>

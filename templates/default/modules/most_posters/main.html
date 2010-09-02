@@ -1,0 +1,9 @@
+<?php include("most_posters.php"); ?>
+<style>
+    @import url("<? echo modules_url . 'most_posters/'; ?>main.css");
+</style>
+
+<div id="ListadoUsuarios">
+    <h3>USUARIOS QUE M&Aacute;S POSTEARON:</h3>
+    <?php load_posters(); ?>
+</div>

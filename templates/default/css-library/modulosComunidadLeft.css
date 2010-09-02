@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*BOXES COMUNIDAD LEFT*/
+#ModComunidad { width:234px; position:relative; float:left;
+}
+#ModComunidad p{ color:#000; font-size:11px; font-weight:bold; margin:5px 0 0 11px;
+}
+#BoxComunidadHome { width:234px; position:relative; float:left;
+}
+#TopBoxHome { width:234px; height:39px; background-image:url(../imgs/home/top-box-home.jpg); background-repeat:no-repeat; position:relative; float:left; background-color:#000;
+}
+#BoxHomeTitleArea { width:234px; height:24px; background-color:#000; position:relative;
+}
+#BoxHomeThumbArea { width:234px; height:90px; background-color:#000; position:relative; float:left;
+}
+#BoxHomePostArea { width:234px; height:80px; position:relative; float:left; padding:10px 0 0 0;
+}
+#BoxHomePostArea p{ color:#FFF; margin:0 0 0 11px; font-weight:normal;
+}
+#BoxHomeBottomArea { width:234px; position:relative; float:left; height:6px;
+}
+.BottomTeAyudamos { background-image:url(../imgs/home/bottom-box-te-ayudamos.jpg); background-repeat:no-repeat; background-position:bottom;
+}
+.BoxTeayudamos { background-color:#CC0066; margin:0;
+}
+.BoxTeayudamos h2{ background-image: url(../imgs/home/title-te-ayudamos.jpg); width:130px; height:15px; text-indent:-9999px; margin:15px 0 0 11px; background-repeat:no-repeat;
+}
+.ThumbTeAyudamos { background-image:url(../imgs/home/thumb-te-ayudamos.jpg); background-repeat:no-repeat;
+}
+.BoxTeescuchamos { background-color:#006699; margin:5px 0 5px 0;
+}
+.BoxTeescuchamos h2{ background-image: url(../imgs/home/title-te-escuhamos.jpg); width:159px; height:15px; text-indent:-9999px; margin:15px 0 0 11px; background-repeat:no-repeat;
+}
+.BottomTeEscuchamos { background-image:url(../imgs/home/bottom-box-te-escuchamos.jpg); background-repeat:no-repeat; background-position:bottom;
+}
+.ThumbTeEscuchamos { background-image:url(../imgs/home/thumb-te-escuchamos.jpg); background-repeat:no-repeat;
+}
+.BoxRed { background-color:#333366; margin:0;
+}
+.BoxRed h2{ background-image: url(../imgs/home/title-chat.jpg); width:109px; height:15px; text-indent:-9999px; margin:0 0 0 11PX; margin:15px 0 0 11px; background-repeat:no-repeat;
+}
+.BottomRed { background-image:url(../imgs/home/bottom-box-red.jpg); background-repeat:no-repeat; background-position:bottom;
+}
+.ThumbRed { background-image:url(../imgs/home/thumb-red.jpg); background-repeat:no-repeat;
+}

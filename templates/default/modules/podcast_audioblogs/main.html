@@ -1,0 +1,10 @@
+<?php include("podcast.php"); ?>
+<style>
+    @import url("<? echo modules_url . 'podcast_audioblogs/'; ?>main.css");
+</style>
+
+<div id="player" style="margin-bottom: 5px;"></div>
+
+<div id="podcast-load">
+    <? load_podcast(0); ?>
+</div>

@@ -1,0 +1,12 @@
+@charset "utf-8";
+/*COLUMNA DERECHA*/
+#ColDer {width:197px; position:relative; float:left; margin:0;
+}
+#ColumnaTwitter {
+}
+#IconColDer { position:absolute; top:0; right:0; width:32px; height:30px;
+}
+
+/*GOOGLE*/
+#GoogleFriendsHome {width:197px; position:relative; float:left; margin:18px 0 0 0;
+}

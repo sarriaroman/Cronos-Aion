@@ -1,0 +1,40 @@
+h1 {
+}
+
+h2 {
+    
+}
+
+#markers {
+    position: relative;
+    margin-top: 5px;
+    float: left;
+    width:505px;
+    border-top: 1px dotted gray;
+    border-bottom: 1px dotted gray;
+    margin-bottom: 2px;
+}
+
+#socialmarker {
+    width: auto;
+    height: auto;
+    float: right;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+#directlink {
+    color: black;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0px;
+    text-decoration: none;
+}
+
+#directlink:hover {
+    color: gray;
+    border-bottom: 1px dotted gray;
+}

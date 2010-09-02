@@ -1,0 +1,174 @@
+@charset "utf-8";
+/*GRAL*/
+#ContProgHome {width:960px; position:relative; float:left;
+}
+#ContProgHome h1{ background-image: url(../imgs/red/title-red.jpg); width:47px; height:26px; background-repeat:no-repeat; text-indent:-9999px; margin:0 0 0 12px;
+}
+#CornerProgHome { width:5px; position:relative; float:left; margin-top:18px; height:264px;
+}
+.CornerLeft {background-image:url(../imgs/corner-left.jpg); background-repeat:no-repeat;
+}
+.CornerRight {background-image:url(../imgs/corner-right.jpg); background-repeat:no-repeat;
+}
+#ProgHome { width:950px; position:relative; float:left; background-image:url(../imgs/bg-borde-top.jpg); background-repeat:repeat-x; padding-top:18px; background-color:#FFF;
+}
+#ModuloProgHome { position:relative; width:940px; margin:5px;
+}
+/*ver el display de este div!!!!!!!!!!!!!!*/
+#ContHomeSecundario {width:950px; position:relative; float:left; padding:5px; display:inline;
+}
+/*FORM LOGIN*/
+#ContLogin {width:150px; position:relative; float:left; padding:5px; margin:0 39px 0 0;
+}
+.btnLogin { width:62px; height:20px; background-image:url(../imgs/red/bg-enviar.jpg); background-repeat:repeat-x; border:1px solid #999;
+}
+#ColCentral {width:720px; position:relative; float:left; margin:0 12px 0 0
+}
+/*HEADER RED*/
+#ContHeaderRed {width:677px; position:relative; float:left; padding:5px; margin:0;
+}
+#FotoHeaderRed { position: relative; float:left;
+}
+#InfoHeaderRed { position: relative; float:left; margin:20px 0 0 5px; width:400px;
+}
+#InfoHeaderRed h2{ background-image:url(../imgs/red/title-bienvenidos.jpg); width:211px; height:61px; background-repeat:no-repeat; text-indent:-9999px;
+}
+/*MODULO CENTRAL*/
+#ModCentralRed { width:720px; position:relative; float:left;
+}
+/*COLUMNA DERECHA*/
+#ColDerIn { width:200px; position:relative; float:left; margin:0;
+}
+/*COLUMNA IZQUIERDA*/
+#ColIzq { width:170px; position:relative; float:left; margin:20px 0 0 0;
+}
+#PodcastsHome h2{ background-image:url(../imgs/home/title-podcasts.jpg); width:122px; height:18px; text-indent:-9999px; margin:20px 0 9px 11px; background-repeat:no-repeat;
+}
+
+.Btn { border:0;
+}
+#BannerEnelaireIzq { width:160px; padding:5px 0 20px 10px; background-color:#000; position:relative; float:left;
+}
+#BannerEnelaireIzq h2{ background-image: url(../imgs/en-el-aire/title-enelaire.jpg); width:101px; height:15px; background-repeat:no-repeat; text-indent:-9999px;
+}
+#BannerEnelaireIzq h3{ color:#FFF;
+}
+#BannerEnelaireIzq p{ color: #FFF;
+}
+#FotoEnelaireIzq { position:relative; float:left; width:137px; margin:10px 0 0 0;
+}
+#BannerEnelaireBgLeft { position:absolute; top:50px; left:0; width:5px; height:138px; background-image:url(../imgs/en-el-aire/bg-left.jpg);
+}
+#BannerEnelaireBgRight { position:absolute; top:50px; right:0; width:5px; height:138px; background-image:url(../imgs/en-el-aire/bg-right.jpg);
+}
+/*COL CENTRAL*/
+#ColCentro { width:505px; position:relative; float:left; padding:22px; background-image: url(../imgs/red/bg-modulo-podcasts.jpg); background-repeat:no-repeat;
+}
+#ColDatos { width:505px; position:relative; float:left; padding:22px;
+}
+#ColDatos h2{ background-image:url(../imgs/red/title-miperfil.jpg); width:95px; height:16px; background-repeat:no-repeat; text-indent:-9999px; margin:0;
+}
+#contMiPerfil { position:relative; float:left;  width:503px;
+}
+#MiPerfilLeft { position:relative; float:left; width:240px; margin:0 20px 0 0;
+}
+#MiPerfilRight{ position:relative; float:left; width:240px; margin:0;
+}
+#AreaPerfil {position:relative; float:left; width:240px; margin:0 0 10px 0;
+}
+#IconPerfil { margin:0 2px 2px 0; position:relative; float:left; width:16px;
+}
+#PlayerPodcasts { width:505px; position:relative; float:left;
+}
+#PlayerPodcasts h2{ /*background-image:url(../imgs/red/ultimos-podcasts.jpg);*/ width:201px; height:20px; background-repeat:no-repeat; margin:0; text-indent:-9999px;
+}
+/*LISTADO PODCASTS */
+#ListadoPodcasts { position:relative; float:left; width:505px;
+}
+#MenuListadoPodcast { position:relative; float:left; width:505px; margin:0 0 2px 0;
+}
+#BtnPod { position:relative; float:right; width:160px;
+}
+.Escuchado { margin:0 0 0 2px;
+}
+#ModuloPodcast { position:relative; float:left; margin:1px 0 0 0; width:505px; height:66px;
+}
+.ModuloImpar { background-color:#E3E3E3;
+}
+.ModuloPar { background-color:#EFEFEF;
+}
+#FechaPodcast { position:absolute; top:5px; left:5px;
+}
+#FechaPodcast p{ color:#666;
+}
+#DescrPodcast { position:absolute; top:20px; left:5px; width:330px;
+}
+#DescrPodcast p{ color: #F60;
+}
+#AlBlogPodcast { position:absolute; top:48px; left:5px;
+}
+#AlBlogPodcast p a{ color:#06C;
+}
+#DuracPodcast { position:absolute; top:5px; right:5px; width:155px; text-align:right; padding:0 20px 0 0;
+}
+.DuracImpar { background-image: url(../imgs/red/clock-impar.jpg); background-position:right; background-repeat:no-repeat;
+}
+.DuracPar { background-image: url(../imgs/red/clock-par.jpg); background-position:right; background-repeat:no-repeat;
+}
+#BtnOir { position:absolute; top:40px; right:61px;
+}
+#BtnBajar { position:absolute; top:40px; right:10px;
+}
+#BtnEditar { position:absolute; top:40px; right:68px;
+}
+#BtnEliminar { position:absolute; top:40px; right:10px;
+}
+#PagListaPod {position:relative; float:right; width:138px; height:8px; padding:10px; background-color:#F60; background-image:url(../imgs/red/bg-paginador.jpg); background-repeat:no-repeat; background-position:bottom;
+}
+#PagListaPod p{ color: #333;
+}
+#PagListaPod p a{ color:#FFF; text-decoration:none;
+}
+/*LISTADO USERS*/
+#ListadoUsuarios { position:relative; float:left; width:505px; margin:20px 0 0 0;
+}
+#ListadoUsuarios h3{ background-image:url(../imgs/red/title-user-mas-postearon.jpg); width:221px; height:14px; margin:0; background-repeat:no-repeat; text-indent:-9999px;
+}
+#BoxUsuario { position:relative; float:left; width:210px; height:48px;
+}
+.BoxUsuarioLeft { margin:20px 0 0 0;
+}
+.BoxUsuarioRight { margin:20px 0 0 20px;
+}
+#PicUser { width:46px; border:1px solid #FC0; position: relative; float:left; margin:0 10px 0 0;
+}
+#DataUser { position: relative; float:left; width:151px;
+}
+#DataUser p{ text-align:left;
+}
+#DataUser p a{ color: #06C; 
+}
+/*LOGUEADO*/
+#ContFoto {width:170px; height:114px; position:relative; float:left; padding:5px; margin:0; background-image:url(../imgs/red/bg-logon.jpg); background-repeat:no-repeat;
+}
+#ContHeaderLogon {width:677px; position:relative; float:left; padding:5px; margin:0;
+}
+#ContHeaderLogon h1 { background-image:url(../imgs/red/cvc-bienvenida.jpg); width:332px; height:21px; background-repeat:no-repeat; text-indent:-9999px; margin:0;
+}
+#NombreUsuario { position:relative; float:left; width:90%;
+}
+/*MODULOS AFILIADAS*/
+#ModAfiliada {position:relative; float:left; width:361px;
+}
+.Soy {position:relative; float:left; width:361px; margin:0 50px 0 10px;
+}
+.Soy h2{ background-image:url(../imgs/red/title-soyafiliada.jpg); width:196px; height:24px; background-repeat:no-repeat; text-indent:-9999px; margin:0;
+}
+.azul{ color:#0066CC;
+}
+.naranja{ color: #FF6600;
+}
+.QuieroSer {position:relative; float:left; margin:0 0 0 50px;
+}
+.QuieroSer h2{ background-image: url(../imgs/red/title-quiero-afiliarme.jpg); width:267px; height:24px; background-repeat:no-repeat; text-indent:-9999px; margin:0;
+}

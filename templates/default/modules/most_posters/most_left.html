@@ -1,0 +1,14 @@
+<div class="BoxUsuarioLeft" id="BoxUsuario">
+    <div id="PicUser">
+        <?php if( empty($usertop->image) ) { ?>
+            <img src="<? echo template_url; ?>imgs/red/users/noPic-user.jpg" width="46" height="46" />
+        <?php } else { ?>
+            <img src="<?php echo $usertop->image; ?>" width="46" height="46" />
+        <?php } ?>
+    </div>
+    <div id="DataUser">
+        <h5><?php echo $podtop->Date; ?></h5>
+        <h4><?php echo $usertop->name; ?></h4>
+        <!--<p><a href="#">ver perfil de este usuario</a></p>-->
+    </div>
+</div>

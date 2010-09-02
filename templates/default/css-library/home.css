@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+/*ver el display de este div!!!!!!!!!!!!!!*/
+#ContHomeSecundario {width:950px; position:relative; float:left; padding:5px; display:inline;
+}
+#ColCentral {width:704px; position:relative; float:left; margin:0 12px 0 0
+}
+
+
+
+/*modulos multimedia home*/
+#ModCentralMedia { width:704px; position:relative; float:left;
+}
+#ContMediaHome { width:704px; position:relative; float:left;
+}
+/*Podcasts Home*/
+#PodcastsHome { width:208px; position:relative; float:left; margin:0 3px 0 0;
+}
+#PodcastsHome h2{ background-image:url(../imgs/home/title-podcasts.jpg); width:122px; height:18px; text-indent:-9999px; margin:20px 0 9px 11px; background-repeat:no-repeat;
+}
+#ThumbPodcastHome { width:208px; height:148px; position:relative; float:left; background-image:url(../imgs/home/bg-thumb-podcast.jpg);
+}
+#BotonesPodcastHome { width:99px; position:relative; margin:9px 0 0 0;
+}
+#BtnOir { width:49px; position:relative; margin:0 1px 0 0; float:left;
+}
+#BtnBajar { width:49px; position:relative; margin:0; float:left;
+}
+.Btn { border:0;
+}
+.thumbPodcastHome { margin:6px 0 0 6px;
+}
+#ModuloPodcastHome { width:185px; position:relative; float:left; padding:0 0 7px 0; border-bottom:1px solid #CCC; margin:5px 0 0 5px;
+}
+.FechaPodcastHome { font-size:11px; color:#000; margin:0;
+}
+.DescPodcastHome { font-size:11px; margin:0;
+}
+/*Video Home*/
+#VideoHome { width:493px; position:relative; float:left; background-image:url(../imgs/home/bg-video.jpg); background-repeat:no-repeat;
+}
+#VideoHome h2{ background-image:url(../imgs/home/title-video.jpg); width:67px; height:18px; margin:20px 0 11px 33px; background-repeat:no-repeat; text-indent:-9999px;
+}
+#VideoHome h3{ margin:0 0 0 33px;
+}
+#HolderVideo { position:relative; float:left; width:420px; margin:0;
+}
+#InfoTextoVideoHome { position:relative; float:left; margin:5px 0 0 0; width:420px;
+}
+#VideosRelacionadosHome { position:relative; float:left; margin:5px 0 0 0; width:420px;
+}
+#ThumbVideosHome { position:relative; float:left; margin:5px 0 0 0; width:420px;
+}
+#thumbVideo { position:relative; width:129px; float:left;
+}
+.thumbVideoCentro { margin:0  16px 0 16px;
+}

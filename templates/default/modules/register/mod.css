@@ -1,0 +1,15 @@
+/*REGISTRARME*/
+#ModRegistroHome { width:226px; height:193px; position:relative; float:left; margin:0 0 0 1px;; background-color: #F90;
+}
+#TopModRegistroHome { width:226px; height:8px; position: absolute; top:0; left:0; background-image:url(./imgs/bg-top-registro-home.jpg); background-repeat:no-repeat;
+}
+#InfoModRegistroHome { width:201px; position: absolute; top:13px; left:11px;
+}
+#InfoModRegistroHome h1{ background-image:url(./imgs/title-registrate.jpg); width:126px; height:17px; background-repeat:no-repeat; margin:0 0 10PX 0; text-indent:-9999px;
+}
+#InfoModRegistroHome p{ color:#FFF; margin:0;
+}
+#InfoModRegistroHome p a{ color:#000;
+}
+#BottomModRegistroHome { width:226px; height:8px; position: absolute; top:185px; left:0; background-image:url(./imgs/bg-bottom-registro-home.jpg); background-repeat:no-repeat;
+}

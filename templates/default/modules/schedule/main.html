@@ -1,0 +1,88 @@
+<?php include("main.php"); ?>
+<style>
+    @import url("<?php echo modules_url . 'schedule/'; ?>mod.css");
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        var tabContainers = $('div.tabs > div');
+        tabContainers.hide().filter(':first').show();
+
+        $('div.tabs ul.tabNavigation a').click(function () {
+            tabContainers.hide();
+            tabContainers.filter(this.hash).show();
+            $('div.tabs ul.tabNavigation a').removeClass('selected');
+            $(this).addClass('selected');
+            return false;
+        }).filter(':first');
+
+        $("a#<?php echo strtolower( date('l') ); ?>").addClass('selected').filter(':first').click();
+
+        /*var schedule = $('#tabs').tabs();
+
+        schedule.tabs('select', '#<?php echo strtolower( date("l") ); ?>');*/
+
+        $("#monday").hide();
+        $('#<?php echo strtolower( date("l") ); ?>').show();
+    });
+</script>
+
+<div id="ContProgHome">
+    <div class="CornerLeft" id="CornerProgHome"></div>
+    <div id="ProgHome">
+        <h1>PROGRAMACI&Oacute;N</h1>
+        <div style="position:relative; float:left; background-color:#FFF; width:950px">
+            <div id="ModuloProgHome">
+                <?php $day = strtolower( date('l') ); ?>
+                <div class="tabs" id="tabs">
+                    <ul class="tabNavigation">
+                        <li><a <?php if( $day == "monday" ) echo "class=\"selected\""; ?> href="#monday"><?php system_message("week:monday"); ?></a></li>
+                        <li><a <?php if( $day == "tuesday" ) echo "class=\"selected\""; ?> href="#tuesday"><?php system_message("week:tuesday"); ?></a></li>
+                        <li><a <?php if( $day == "wednesday" ) echo "class=\"selected\""; ?> href="#wednesday"><?php system_message("week:wednesday"); ?></a></li>
+                        <li><a <?php if( $day == "thursday" ) echo "class=\"selected\""; ?> href="#thursday"><?php system_message("week:thursday"); ?></a></li>
+                        <li><a <?php if( $day == "friday" ) echo "class=\"selected\""; ?> href="#friday"><?php system_message("week:friday"); ?></a></li>
+                        <li><a <?php if( $day == "saturday" ) echo "class=\"selected\""; ?> href="#saturday"><?php system_message("week:saturday"); ?></a></li>
+                        <li><a  <?php if( $day == "sunday" ) echo "class=\"selected\""; ?> href="#sunday"><?php system_message("week:sunday"); ?></a></li>
+                        <script type="text/javascript">
+                        var interval = setInterval(function()
+                        {
+                            $('#time').load('<?php echo actions_url; ?>admin.php?action=actualtime');
+                        }, 1000);
+                    </script>
+                        <div id="time" style="float: right; margin-right: 10px; font-size: 12px; font-weight: bold; font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;"></div>
+                    </ul>
+                    <div id="monday">
+                        <?php loadPrograms("monday"); ?>
+                    </div>
+
+                    <div id="tuesday">
+                        <?php loadPrograms("tuesday"); ?>
+                    </div>
+
+                    <div id="wednesday">
+                        <?php loadPrograms("wednesday"); ?>
+                    </div>
+
+                    <div id="thursday">
+                        <?php loadPrograms("thursday"); ?>
+                    </div>
+
+                    <div id="friday">
+                        <?php loadPrograms("friday"); ?>
+                    </div>
+
+                    <div id="saturday">
+                        <?php loadPrograms("saturday"); ?>
+                    </div>
+
+                    <div id="sunday">
+                        <?php loadPrograms("sunday"); ?>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="CornerRight" id="CornerProgHome"></div>
+</div>

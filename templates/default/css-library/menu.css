@@ -1,0 +1,111 @@
+@charset "utf-8";
+/*menu*/
+#Menu {
+position: relative;
+width:960px;
+height:30px;
+}
+ul#Nav{
+width:960px;
+height:30px;
+list-style:none;
+margin:0;
+padding:0;
+position:absolute;
+left:0;
+top:0;
+}
+ul#Nav li{
+float:left;
+}
+ul#Nav li a{
+display: block; /*importante!*/
+text-decoration:none;
+border-right:1px solid #FFF;
+background-repeat:no-repeat;
+}
+ul#Nav li a:hover{
+background-repeat:no-repeat;
+}
+ul#Nav li a span{
+display: none;
+}
+
+/*Items Menu*/
+ul#Nav li#Inicio a {
+width:45px;
+height:24px;
+margin:0 0 0 18px;
+padding-right:26px;
+background-image: url(../imgs/menu/inicio-link.jpg);
+background-position: 0px 0px;
+}
+ul#Nav li#Inicio a:hover{
+background-position: 0px -24px;
+}
+ul#Nav li#Institucional a {
+width:115px;
+height:24px;
+margin:0 0 0 25px;
+padding-right:21px;
+background-image: url(../imgs/menu/institucional-link.jpg);
+background-position: 0px 0px;
+}
+ul#Nav li#Institucional a:hover{
+background-position: 0px -24px;
+}
+ul#Nav li#Programacion a {
+width:120px;
+height:24px;
+margin:0 0 0 29px;
+padding-right:28px;
+background-image: url(../imgs/menu/programacion-link.jpg);
+background-position: 0px 0px;
+}
+ul#Nav li#Programacion a:hover{
+background-position: 0px -24px;
+}
+ul#Nav li#TeAyudamos a {
+width:108px;
+height:24px;
+margin:0 0 0 23px;
+padding-right:25px;
+background-image: url(../imgs/menu/teayudamos-link.jpg);
+background-position: 0px 0px;
+}
+ul#Nav li#TeAyudamos a:hover{
+background-position: 0px -24px;
+}
+ul#Nav li#TeEscuchamos a {
+width:125px;
+height:24px;
+margin:0 0 0 25px;
+padding-right:25px;
+background-image: url(../imgs/menu/teescuchamos-link.jpg);
+background-position: 0px 0px;
+}
+ul#Nav li#TeEscuchamos a:hover{
+background-position: 0px -24px;
+}
+ul#Nav li#Red a {
+width:29px;
+height:24px;
+margin:0 0 0 26px;
+padding-right:24px;
+background-image: url(../imgs/menu/red-link.jpg);
+background-position: 0px 0px;
+}
+ul#Nav li#Red a:hover{
+background-position: 0px -24px;
+}
+ul#Nav li#Contacto a {
+width:79px;
+height:24px;
+margin:0 0 0 25px;
+background-image: url(../imgs/menu/contacto-link.jpg);
+border-right:none;
+background-position: 0px 0px;
+}
+ul#Nav li#Contacto a:hover{
+background-position: 0px -24px;
+}

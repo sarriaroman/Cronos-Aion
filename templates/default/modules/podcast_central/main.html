@@ -1,0 +1,25 @@
+<?php include("podcast.php"); ?>
+<?php $podcast = get_var("podcast"); ?>
+<style>
+    @import url("<? echo modules_url . 'podcast_central/'; ?>main.css");
+</style>
+
+<h2>&Uacute;LTIMOS PODCASTS</h2>
+<br />
+<div id="player" style="margin-bottom: 5px;"></div>
+
+<div id="ListadoPodcasts">
+    <div id="MenuListadoPodcast">
+        <?php $btns = $podcast["buttons"]; ?>
+        <?php if( empty( $btns ) || $btns == "others" ) { ?>
+        <div id="BtnPod" class="Escuchado"><a href="#podcast-load" onclick="$('#podcast-load').load('<?php echo modules_url; ?>podcast_central/podcast.php?action=top');" ><img src="<? echo template_url; ?>imgs/red/btn-pod-esc.jpg" width="160" height="29" class="Btn" /></a></div>
+        <div id="BtnPod"><a href="#podcast-load" onclick="$('#podcast-load').load('<?php echo modules_url; ?>podcast_central/podcast.php?action=paginator&offset=0&place=others');" ><img src="<? echo template_url; ?>imgs/red/btn-pod-dest.jpg" width="160" height="29" class="Btn" /></a></div>
+        <?php } else if( $btns == "mine" ) { ?>
+        <div id="BtnPod" class="Escuchado"><a href="#podcast-load" onclick="$('#podcast-load').load('<?php echo modules_url; ?>podcast_central/podcast.php?action=paginator&offset=0&place=mine');"><img src="<? echo template_url; ?>imgs/red/btn-pod-misaudios.jpg" width="160" height="29" class="Btn" /></a></div>
+        <div id="BtnPod"><a href="<?php echo base_url; ?>index.php?url=red&action=upload"><img src="<? echo template_url; ?>imgs/red/btn-pod-subiraudio.jpg" width="160" height="29" class="Btn" /></a></div>
+        <?php } ?>
+    </div>
+    <div id="podcast-load">
+        <? load_podcast(0, $btns); ?>
+    </div>
+</div>

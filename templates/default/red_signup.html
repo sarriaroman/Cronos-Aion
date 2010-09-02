@@ -1,0 +1,144 @@
+<? include("header.html"); ?>
+<style type="text/css" media="screen">
+    <!--
+    @import url("<? echo template_url; ?>css-library/red.css");
+    @import url("<? echo template_url; ?>css-library/estilos-form.css");
+    -->
+</style>
+
+<script type="text/javascript">
+
+    $(function(){
+
+        $("#cancel").click( function(){
+            window.location = "<?php echo base_url; ?>";
+        });
+    });
+
+    $(function(){
+
+        $("#send").click( function(){
+
+            var url_send = "<?php echo actions_url; ?>mail.php";
+
+            var to = "<? echo get_config('email:requests'); ?>";
+            var subject = "Solicitud de Afiliación";
+
+            var name = $("input#name").val();
+            var telephone = $("input#telephone").val();
+            var contact = $("input#contact").val();
+            var mail = $("input#email").val();
+
+            var msg = "Solicitud de Afiliación de:\n\nNombre: " + name + "\nTeléfono: " + telephone + "\nHorario de contacto: " + contact + "\nE-Mail: " + mail;
+
+            if( name == "" || mail == "" || telephone == "" || contact == "" ) {
+                $("#response").fadeIn('slow');
+                $("#response").text("Faltan completar campos");
+
+                setTimeout(function() {
+                    $("#response").fadeOut('slow');
+                }, 2000);
+
+                return false;
+            }
+
+            if( mail.indexOf("@") == -1 ) {
+                $("#response").fadeIn('slow');
+                $("#response").text("El correo electronico no es válido");
+
+                setTimeout(function() {
+                    $("#response").fadeOut('slow');
+                }, 2000);
+
+                return false;
+            }
+
+            var vars = "to=" + to + "&from=" + mail + "&subject=" + subject + "&msg=" + msg;
+            $.ajax({
+                type: "POST",
+                url: url_send,
+                data: vars,
+                success: function(html) {
+                    $("#response").fadeIn('slow');
+                    $("#response").text(html);
+
+                    $("input#name").val("");
+                    $("input#email").val("");
+                    $("input#telephone").val("");
+                    $("input#contact").val("");
+
+                    setTimeout(function() {
+                        $("#response").fadeOut('slow');
+                    }, 2000);
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+
+<div id="ContMain">
+    <div>
+        <div id="Main">
+            <div style="position:relative; width:960px">
+                <div id="ContProgHome">
+                    <div class="CornerLeft" id="CornerProgHome"></div>
+                    <div id="ProgHome">
+                        <div class="QuieroSer" id="ModAfiliada">
+                            <div style="width:361px; position:relative; float:left; margin:0">
+                                <h2>SOY AFILIADA</h2>
+                            </div>
+                            <div style="width:361px; position:relative; float:left; margin:10px 0 10px 0">
+                                <h3><span class="naranja">SUMATE A NUESTRA RED DE AFILIADAS.</span><br />
+                                    tu puedes ser parte de nuestra red satelital, hace <a href="#">click aqui</a>, envianos tus datos para poder disfrutar de los beneficios de nuestra plataforma digital.</h3>
+                            </div>
+                            <div style="width:361px; position:relative; float:left; margin:0"><img src="<? echo template_url; ?>imgs/red/pic-afiliada.jpg" width="228" height="152" /></div>
+                            <div style="width:361px; position:relative; float:left; margin:0">
+                                <ul>
+                                    <li>
+                                        <p>Contenidos muy variados y artisticamente bien dise&ntilde;ados para una audiencia moderna.</p>
+                                    </li>
+                                    <li>
+                                        <p>Programas en vivo de actualidad y vida espiritual</p>
+                                    </li>
+                                    <li>
+                                        <p>Enfoque en la familia para promover el bienestar diario.</p>
+                                    </li>
+                                    <li>
+                                        <p>Programacion en Espa&ntilde;ol.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="width:361px; position:relative; float:left; margin:10px 0 10px 0">
+                                <p>Para mayor informacion ingresa a <a href="http://www.cvcafiliadas.com" target="_blank">www.cvcafiliadas.com</a></p>
+                            </div>
+                        </div>
+                        <div id="EditartAudio" style="margin:0 0 0 20px">
+                            <h3>Quiero ser parte de la red CVC
+                            </h3>
+                            <div id="EditartAudioLeft">
+                                <p>Nombre Completo</p><input name="name" id="name" type="text" class="AreaTexto" />
+                                <p>Telefono</p><input name="name" id="telephone" type="text" class="AreaTexto" />
+                                <p>Horario de contacto</p><input name="name" id="contact" type="text" class="AreaTexto" />
+                                <p>Email</p><input name="email" id="email" type="text" class="AreaTexto" />
+                                <div id="response"></div>
+                                <div style="position:relative; float:left; width:250px; margin:10px 0 0 0">
+                                <label>
+                                    <input name="button2" type="button" class="BtnCancelar" id="cancel" value="Cancelar" />
+                                </label>
+                                <label>
+                                    <input name="button3" type="button" class="BtnGuardar" id="send" value="Enviar" />
+                                </label>
+                            </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="CornerRight" id="CornerProgHome"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<? include("footer.html"); ?>

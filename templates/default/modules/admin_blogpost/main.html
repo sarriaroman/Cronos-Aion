@@ -1,0 +1,96 @@
+<?php include("blog.php"); ?>
+<style>
+    @import url("<? echo modules_url . 'admin_blogpost/'; ?>mod.css");
+</style>
+
+<!-- Editor de Texto -->
+<script type="text/javascript" src="<?php echo javascript_url; ?>ckeditor/ckeditor.js"></script>
+
+<div style="width:505px; padding:22px; position:relative; float:left">
+
+    <?php load_blogs(); ?>
+
+    <script type="text/javascript">
+        $(function(){
+
+            $("#btncancel").click( function(){
+                $("input#tittleblog").val("");
+                CKEDITOR.instances.postcontent.setData("");
+            });
+
+            $("#btnsave").click( function(){
+
+                //$("#loadblogpost").html("<center><img src='<?php echo base_url; ?>backend/imgs/loading.gif' /></center>");
+
+                var url_send = "<?php echo modules_url . 'admin_blogpost/'; ?>actions.php";
+
+                var bbid = $("#blogid").text();
+
+                var btittle = $("input#tittleblog").val();
+                var bpost = CKEDITOR.instances.postcontent.getData();
+                if( bpost == "" ) bpost = $(".ckeditor").val();
+
+                if( btittle == "" || bpost == "" ) {
+                    $("#response").fadeIn('slow');
+                    $("#response").text("Faltan completar campos");
+
+                    setTimeout(function() {
+                        $("#response").fadeOut('slow');
+                    }, 2000);
+
+                    return false;
+                }
+
+                $.post(url_send,
+                   {action: "addpost",
+                    bid: bbid,
+                    tittle: btittle,
+                    post: bpost
+                   },
+
+			//return the data
+                    function(html) {
+                        if( html == "ok" ) {
+                            $("#loadblogpost").load("<?php echo modules_url . 'admin_blogpost/'; ?>blog.php?pid=" + bbid );
+
+                            $("input#tittleblog").val("");
+                            CKEDITOR.instances.postcontent.setData("");
+                        } else {
+                            $("#response").fadeIn('slow');
+                            $("#response").text("Se produjo un error!");
+
+                            setTimeout(function() {
+                                $("#response").fadeOut('slow');
+                            }, 2000);
+
+                            return false;
+                        }
+                    });
+
+                return false;
+            });
+        });
+    </script>
+
+    <br/><h4>Titulo: </h4><input name="textfield" type="text" id="tittleblog" class="text ui-widget-content ui-corner-all" size="70" /><br/>
+    <div style="position:relative; float:left; width:503px">
+        <br/><h4>Contenido: </h4>
+        <textarea cols="" rows="5" style="width:503px" class="ckeditor" id="postcontent"></textarea>
+        <div id="response"></div>
+        <div style="position:relative; float:left; width:503px; margin:20px 0 20px 0">
+            <label>
+                <input name="button" type="submit" class="BtnCancelar" id="btncancel" value="cancelar" />
+            </label>
+            <label>
+                <input name="button" type="submit" class="BtnGuardar" id="btnsave" value="guardar" />
+            </label>
+        </div>
+    </div>
+
+    <div id="loadblogpost">
+
+        <?php loadPosts(); ?>
+
+    </div>
+
+</div>

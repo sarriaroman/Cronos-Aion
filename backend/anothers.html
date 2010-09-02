@@ -1,0 +1,47 @@
+<h3 class="ui-widget-header ui-corner-all">Zona horaria</h3>
+<?php input("Zona horaria", "datetimezone", "date:timezone"); ?>
+
+<h3 class="ui-widget-header ui-corner-all">Audioblog</h3>
+<?php input("Habilitar", "blogenabled", "blog:enabled"); ?>
+<?php input("Mostrar todos los audioblogs en programación", "blogshowall", "blog:showall"); ?>
+
+<h3 class="ui-widget-header ui-corner-all">Audio (Podcast)</h3>
+<?php input("Quota Maxima de Usuario", "audioquota", "audio:quota"); ?>
+
+<h3 class="ui-widget-header ui-corner-all">Sala de Chat</h3>
+<?php input("Habilitar", "chatenabled", "chat:enabled"); ?>
+<?php input("Tasa de refresco (segundos)", "chatrefresh", "chat:refresh"); ?>
+<?php input("Limite conversaciones anteriores", "chatlimit", "chat:limit"); ?>
+
+<h3 class="ui-widget-header ui-corner-all">Videos Inicio</h3>
+<?php input("Video 1", "video1", "home:video1"); ?>
+<?php input("Imagen Video 1", "imgvideo1", "home:imgvideo1"); ?>
+<?php input("Video 2", "video2", "home:video2"); ?>
+<?php input("Imagen Video 2", "imgvideo2", "home:imgvideo2"); ?>
+<?php input("Video 3", "video3", "home:video3"); ?>
+<?php input("Imagen Video 3", "imgvideo3", "home:imgvideo3"); ?>
+
+<h3 class="ui-widget-header ui-corner-all">Redes Sociales</h3>
+<?php input("Facebook Fan Page", "facebookfanpage", "facebook:fanpage"); ?>
+<?php input("Flickr Page", "flickpage", "flickr:page"); ?>
+
+<h3 class="ui-widget-header ui-corner-all">Banners</h3>
+<?php input("Banner 480x60 (Superior)", "bannertop", "banner:480x60"); ?>
+<?php input("Link", "bannertoplink", "banner:toplink"); ?>
+<?php input("Banner 160x600 (Vertical)", "bannervertical", "banner:160x600"); ?>
+<?php input("Link", "bannerverticallink", "banner:verticallink"); ?>
+
+<h3 class="ui-widget-header ui-corner-all">Google Analytics</h3>
+<?php input("Codigo de Seguimiento ( UA-xxxxxx-x )", "googleanalytics", "google:analytics"); ?>
+
+<h3 class="ui-widget-header ui-corner-all">AdSense</h3>
+<?php textarea("AdSense", "adsense", "adsense:adsense", false); ?>
+
+<h3 class="ui-widget-header ui-corner-all">Versiones jQuery</h3>
+<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+    <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+        <strong>Atención!</strong> La alteración de estas opciones puede dejar el sitio sin funcionamiento!</p>
+</div>
+<br/>
+<?php input("jQuery Version", "jqueryversion", "jquery:version"); ?>
+<?php input("jQuery UI Version", "jqueryuiversion", "jquery:uiversion"); ?>

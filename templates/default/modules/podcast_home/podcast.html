@@ -1,0 +1,8 @@
+<div id="ModuloPodcastHome">
+    <p class="FechaPodcastHome"><? echo $podcast->Date; ?></p>
+    <p class="DescPodcastHome"><? echo utf8_encode($podcast->Description); ?></p>
+    <div id="BotonesPodcastHome">
+        <div id="BtnOir"><a style="cursor: pointer;" onclick="$('#HomePlayer').load('<?php echo actions_url; ?>player.php?pid=<?php echo $podcast->Id; ?>&w=185');"><img src="<? echo modules_url; ?>podcast_home/imgs/btn-oir.jpg" alt="Oir" width="49" height="20" class="Btn" /></a></div>
+        <div id="BtnBajar"><a href="<?php echo actions_url; ?>download.php?file=<?php echo $podcast->Filename; ?>"><img src="<? echo modules_url; ?>podcast_home/imgs/btn-bajar.jpg" alt="Bajar" width="49" height="20" class="Btn" /></a></div>
+    </div>
+</div>

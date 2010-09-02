@@ -1,0 +1,10 @@
+<div id="BoxAudioBlog" class="BoxPar BoxCentro" style="cursor: pointer; display: block;" onclick="window.location = '<?php echo base_url; ?>index.php?url=blog&id=<?php echo $program->id; ?>';">
+    <div id="ThumbAudioBlog"><a href="#"><img src="<?php echo $program->image; ?>" width="64" height="64" class="Btn" /></a></div>
+    <div id="InfoAudioBlog">
+        <h3><?php echo $program->name; ?></h3>
+        <h5><?php echo $description; ?></h5>
+    </div>
+    <!--<div id="Spearker"><a style="cursor: pointer;" onclick="window.open('<?php echo base_url; ?>index.php?url=online','CVC','menubar=no,toolbar=no,resizable=no,scrollbars=no,status=no,width=497,height=413');"><img src="<?php echo template_url; ?>imgs/programacion/icon-speaker-trans.png" width="16" height="12" class="Btn" /></a></div>-->
+    <div id="rss"><a href="<?php echo base_url; ?>index.php?url=blog&id=<?php echo $program->id; ?>" style="color: black; text-decoration: none; font-weight: bold; font-size: 11px; font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;">Ir al audioblog...</a></div>
+    <!-- <img src="<?php echo template_url; ?>imgs/programacion/icon-rss-trans.png" width="12" height="12" class="Btn" /> -->
+</div>

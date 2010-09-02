@@ -1,0 +1,342 @@
+<? include("header.html"); ?>
+<style type="text/css" media="screen">
+    <!--
+    @import url("<?php echo template_url; ?>css-library/red.css");
+    @import url("<?php echo template_url; ?>css-library/ColumnaRight.css");
+    @import url("<?php echo template_url; ?>css-library/estilos-form.css");
+    -->
+</style>
+
+<link href="<?php echo javascript_url; ?>uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="<?php echo javascript_url; ?>uploadify/swfobject.js"></script>
+<script type="text/javascript" src="<?php echo javascript_url; ?>uploadify/jquery.uploadify.v2.1.0.js"></script>
+
+<script type="text/javascript" src="<?php echo javascript_url; ?>upload/ajaxfileupload.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $(".BtnGuardar").click(function() {
+            var url_send = "<?php echo actions_url; ?>addpodcast.php";
+
+            var suid = $("input#uid").val();
+            var spid = $("input#pid").val();
+
+            var sdate = $("input#date").val();
+            var stittle = $("input#tittle").val();
+            var sduration = $("input#duration").val();
+            var surl = $("input#url").val();
+            var sdescription = $("textarea#description").val();
+            var shome = $("input#home").is(':checked');
+            var sinternal = $("input#internal").is(':checked');
+            var sblog = $("input#blog").is(':checked');
+
+            $.post(url_send,
+            {   uid: suid,
+                date: sdate,
+                tittle: stittle,
+                duration: sduration,
+                url: surl,
+                description: sdescription,
+                home: shome,
+                internal: sinternal,
+                blog: sblog,
+                pid: spid
+            },
+
+            //return the data
+            function(html) {
+                $("#response").fadeIn('slow');
+                $("#response").html( html );
+
+                setTimeout(function() {
+                    $("#response").fadeOut('slow');
+
+                    if( html.indexOf("updatesuccess") != -1 ) {
+                        window.location = "<?php echo base_url; ?>index.php?url=red&action=mypodcast";
+                    }
+
+                    if( html.indexOf("success") != -1 ) {
+                        $("input#date").val("");
+                        $("input#tittle").val("");
+                        $("input#duration").val("");
+                        $("input#url").val("");
+                        $("textarea#description").val("");
+                        $("input#home").val("");
+                        $("input#internal").val("");
+                        $("input#blog").val("");
+
+                        $("input#pid").val("");
+
+                        $('#podcast-load').load('<?php echo modules_url; ?>podcast_central/podcast.php?action=paginator&offset=0&place=mine');
+                    }
+                }, 2000);
+            }
+        );
+        
+            return false;
+
+        });
+    });
+
+    $( function() {
+        $(".BtnCancelar").click( function() {
+            window.location = "<?php echo base_url; ?>index.php?url=red";
+        });
+    });
+
+    $(function() {
+        $("#date").datepicker({ 
+            dateFormat: "dd-mm-yy"
+        });
+    });
+
+    $(document).ready( function(){
+        var duration = $("#duration").val();
+
+        if( duration == "" ) {
+            $(".BtnGuardar").hide();
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#uploadify").uploadify({
+            'uploader'       : '<?php echo javascript_url; ?>uploadify/uploadify.swf',
+            'script'         : '<?php echo javascript_url; ?>uploadify/uploadify.php',
+            'cancelImg'      : '<?php echo javascript_url; ?>uploadify/cancel.png',
+            'folder'         : '/podcast',
+            'queueID'        : 'fileQueue',
+            'scriptAccess'   : 'always',
+            'auto'           : true,
+            'multi'          : false,
+            'sizeLimit'      : 102400000,
+            'buttonText'     : 'Cargar',
+            'fileDesc'       : 'Archivos MP3',
+            'fileExt'        : '*.mp3',
+
+            onError: function (evt, queueID, fileObj, errorObj) {
+                alert( errorObj['info'] );
+            },
+            onComplete: function (evt, queueID, fileObj, response, data) {
+                var url_send = "<?php echo actions_url; ?>checkaudio.php";
+
+                var str = fileObj['name'];
+
+                var vars = "filename=" + str;
+                $.ajax({
+                    type: "POST",
+                    url: url_send,
+                    dataType: "json",
+                    data: vars,
+                    success: function(data) {
+                        if( data.error == "yes" ) {
+                            $("#response").fadeIn('slow');
+                            $("#response").html( data.message );
+
+                            setTimeout(function() {
+                                $("#response").fadeOut('slow');
+                            }, 10000);
+                        } else {
+                            $("input#duration").val( data.time );
+
+                            $("#tittle").val( str.replace('.mp3','') );
+                            
+                            $("#url").val( data.url );
+                            $(".BtnGuardar").show();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    /*function ajaxFileUpload()
+    {
+        $("#loading")
+        .ajaxStart(function(){
+            $(this).show();
+        })
+        .ajaxComplete(function(){
+            $(this).hide();
+        });
+
+        $.ajaxFileUpload
+        (
+        {
+            url:'<?php echo javascript_url; ?>upload/doajaxfileupload.php',
+            secureuri:false,
+            fileElementId:'fileToUpload',
+            dataType: 'json',
+            success: function (data, status)
+            {
+                if(typeof(data.error) != 'undefined')
+                {
+                    if(data.error != '')
+                    {
+                        alert(data.error);
+                    }else
+                    {
+                        alert(data.msg);
+                    }
+                }
+            },
+            error: function (data, status, e)
+            {
+                alert(e);
+            }
+        }
+    )
+
+        return false;
+
+    }*/
+</script>
+
+<?php
+
+$pid = get_var("pid");
+
+if( !isset( $user ) ) $user = check_session();
+
+if( !empty( $pid ) ) {
+$podcast = new Podcast( $pid );
+
+if( $podcast->uid != $user->uid ) header( "Location: " . base_url . "index.php?url=red" );
+}
+?>
+
+<div id="ContMain">
+    <div>
+        <div id="Main">
+            <div style="position:relative; width:960px">
+                <div id="ContProgHome">
+                    <div class="CornerLeft" id="CornerProgHome"></div>
+                    <div id="ProgHome">
+                        <h1>RED</h1>
+                        <div style="position:relative; float:left; background-color:#FFF; width:950px">
+                            <? load_module("user_menu"); ?>
+                        </div>
+                        <div style="position:relative; float:left; margin:0; width:940px; background-color:#FFF; padding:5px">
+                            <div id="ColCentral">
+                                <div id="ModCentralRed">
+                                    <div id="ColIzq">
+                                        <?php load_module_with_param("intheair/main.php","vertical" ); ?>
+                                        <div id="Skyscrapper"><a href="<?php echo get_config('banner:verticallink'); ?>"><img src="<?php echo get_config('banner:160x600'); ?>" alt="Iphone" width="160" height="600" class="Btn" /></a></div>
+                                    </div>
+                                    <div id="ColCentro">
+                                        <div id="PlayerPodcasts">
+                                            <!-- <h2>&Uacute;LTIMOS PODCASTS</h2>-->
+
+                                            <div id="EditartAudio">
+                                                <h3>Editar Audio</h3>
+                                                <form id="data" method="post" action="<?php echo actions_url; ?>addpodcast.php">
+
+                                                    <div id="EditartAudioLeft">
+                                                        <input name="uid" type="hidden" id="uid" value="<?php echo $user->uid; ?>" />
+                                                        <input name="pid" type="hidden" id="pid" value="<?php echo $podcast->Id; ?>" />
+                                                        <p>Audio</p>
+
+                                                        <input name="url" type="text" class="AreaTexto" id="url" value="<?php echo $podcast->Url; ?>" readonly />
+                                                        <?php if( !isset( $podcast ) ) { ?>
+                                                        <input type="file" name="uploadify" id="uploadify" />
+                                                        <!--<input id="fileToUpload" type="file" size="45" name="fileToUpload" class="input">
+                                                        <button class="button" id="buttonUpload" onclick="return ajaxFileUpload();">Upload</button>-->
+                                                        <?php } ?>
+
+                                                        <p>Duraci&oacute;n</p>
+                                                        <input name="duration" type="text" id="duration" class="AreaTexto" readonly value="<?php echo $podcast->Duration; ?>" />
+
+                                                        <p>Fecha</p><input name="date" type="text" id="date" class="AreaTexto" value="<?php echo $podcast->Date; ?>" />
+
+                                                        <p>T&iacute;tulo</p>
+                                                        <input name="tittle" type="text" id="tittle" class="AreaTexto" value="<?php echo $podcast->Tittle; ?>" />
+
+                                                    </div>
+                                                    <div id="EditartAudioRight">
+                                                        <div style="position:relative; float:left; margin:0">
+                                                            <p>Descripci&oacute;n</p>
+                                                            <label>
+                                                                <textarea name="description" cols="45" rows="5" class="AreaCampo" id="description"><?php echo $podcast->Description; ?></textarea>
+                                                            </label>
+                                                        </div>
+                                                        <div style="position:relative; margin:10px 0 10px 0; float:left; width:200px; height:30px">
+
+                                                            <div style="position:absolute; left:5px; top:0">
+                                                                <label>
+                                                                    <input type="checkbox" name="chome" id="home" <?php if( ($podcast->Home == '1') ) { ?> checked <?php } ?> />
+                                                                </label>
+                                                            </div>
+                                                            <div  style="position:absolute; left:30px; top:3px; width:80px">
+                                                                <p>Inicio</p>
+                                                            </div>
+                                                            <br/>
+                                                            <div style="position:absolute; left:85px; top:0">
+                                                                <label>
+                                                                    <input type="checkbox" name="cinternal" id="internal" <?php if( ($podcast->Internal == '1') ) { ?> checked <?php } ?> />
+                                                                </label>
+                                                            </div>
+                                                            <div  style="position:absolute; left:115px; top:3px; width:100px">
+                                                                <p>Interno (Solo RED)</p>
+                                                            </div>
+                                                            <br/>
+                                                            <div style="position:absolute; left:5px; top:25px">
+                                                                <label>
+                                                                    <input type="checkbox" name="cblog" id="blog" <?php if( ($podcast->Blog == '1') ) { ?> checked <?php } ?> />
+                                                                </label>
+                                                            </div>
+                                                            <div  style="position:absolute; left:30px; top:28px; width:80px">
+                                                                <p>AudioBlog</p>
+                                                            </div>
+                                                            <br/>
+                                                        </div>
+                                                        <div style="position:relative; float:left; margin:0">
+                                                            <!--<p><em>Tags (separar por coma: ej &ldquo;notiicia, entrevsita..)</em></p><input name="" type="text" class="AreaTexto" id="tags" value="<?php echo ( (isset( $podcast )) ? Tag::get_tags( $podcast->Id ) : '' ); ?>" />-->
+                                                        </div>
+                                                    </div>
+                                                    <div style="position:relative; float:left; width:250px; margin:10px 0 0 0">
+                                                        
+                                                        <label>
+                                                            <input name="button" type="button" class="BtnGuardar" id="button" value="Guardar" />
+                                                        </label>
+                                                        <label>
+                                                            <input name="button2" type="button" class="BtnCancelar" id="button2" value="Cancelar" />
+                                                        </label>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                            <div style="position:relative; float:left; width:250px; margin:-2px 0 10px 0">
+                                                <div id="response"></div>
+                                                <div id="fileQueue"></div>
+                                            </div>
+                                            <?php
+                                            put_var("podcast", array( "player" => "hidden", "buttons" => "mine" ) );
+                                            load_module("podcast_central");
+                                            ?>
+                                            <?php load_module("most_posters"); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="ColDerIn">
+                                
+                                <?php load_module("flickr_mod"); ?>
+                                <?php load_module("facebook_mod"); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="CornerRight" id="CornerProgHome"></div>-->
+                </div>
+            </div>
+            <div style="position:relative; width:950px; padding:1px 5px 0 5px; margin:0;">
+                <? load_module("adsense"); ?>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<? include("footer.html"); ?>

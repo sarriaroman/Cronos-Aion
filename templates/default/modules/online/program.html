@@ -1,0 +1,31 @@
+<div id="ContEnelaireHome">
+    <h1>EN EL AIRE</h1>
+    <?php
+        $maxWidth = 153;
+        $maxHeight = 111;
+
+        $filename = ( empty( $program->image ) ) ? template_url . 'imgs/red/users/noPic-logon.jpg' : $program->image;
+
+        $size = getimagesize( $filename );
+
+        $w = $size[0];
+        $h = $size[1];
+
+        if ($w < $h) {
+            $h = ($h * $maxWidth) / $w;
+            $w = $maxWidth;
+        } else {
+            $w = ($w * $maxHeight) / $h;
+            $h = $maxHeight;
+        }
+    ?>
+    <div id="ThumbEnelaireHome"><img src="<?php echo $filename ?>" width="<?php echo $w ?>" height="<?php echo $h ?>" alt="thumb" /></div>
+    <div id="InfoEnelaireHome">
+        <h2><?php echo ( empty( $program->name ) ) ? "No hay programa." : $program->name; ?></h2>
+        <p><strong>Resumen acerca de lo que trata el programa:</strong><br />
+            <?php echo ( empty( $program->description ) ) ? "No hay descripción" : ( ( strlen($program->description) > 400 ) ? substr( $program->description, 0, 400 ) : $program->description ); ?></p>
+        <?php if( get_config('blog:enabled') == 'yes' && $program->admin_uid != -1 ) { ?>
+        <!--<div style="position:relative; float:left; width:117px; margin:10px 0 0 1px"><a href="<?php echo base_url; ?>index.php?url=blog&id=<?php echo $program->id; ?>"><img src="<? echo template_url; ?>imgs/btn-visitar.jpg" width="117" height="20" class="Btn" /></a></div>-->
+        <?php } ?>
+    </div>
+</div>

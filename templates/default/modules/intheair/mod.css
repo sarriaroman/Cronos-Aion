@@ -1,0 +1,74 @@
+/*EN EL AIRE*/
+#ModCentralA { width:704px; position:relative; float:left;
+}
+#ModEnelaireHome { width:477px; height:193px; position:relative; float:left; background-color:#000;
+}
+#BgTopEnelaireHome { width:477px; height:8px; position: absolute; background-image: url(./imgs/bg-top-enelaire.jpg); background-repeat:no-repeat; top:0; left:0;
+}
+#BgBottomEnelaireHome { width:477px; height:8px; position: absolute; background-image: url(./imgs/bg-bottom-enelaire.jpg); background-repeat:no-repeat; left:0; top:185px;
+}
+#ContEnelaireHome { width:446px; position: absolute; top:11px; left:12px;
+}
+#ContEnelaireHome h1{ background-image:url(./imgs/title-enelaire.jpg); width:154px; height:23px; background-repeat:no-repeat; text-indent:-9999px; margin:0;
+}
+#ThumbEnelaireHome { 
+    position:relative;
+    float:left;
+    width:153px;
+    height: 111px;
+    margin:10px 31px 0 0;
+    display:block;
+    overflow:hidden;
+    z-index:1;
+}
+
+/*#ThumbEnelaireHome img{
+    float:left;
+    position:absolute;
+    top: -25%;
+    left: -25%;
+}*/
+
+#ThumbEnelaireHome img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#InfoEnelaireHome{width:262px; position:relative; float:left;
+}
+#InfoEnelaireHome h2{ color:#FFF;
+}
+#InfoEnelaireHome p{ color: #CCC;
+}
+
+/* Vertical */
+#BannerEnelaireIzq { width:160px; padding:5px 0 20px 10px; background-color:#000; position:relative; float:left;
+}
+#BannerEnelaireIzq h2{ background-image: url(./imgs/title-enelaire-small.jpg); width:101px; height:15px; background-repeat:no-repeat; text-indent:-9999px;
+}
+#BannerEnelaireIzq h3{ color:#FFF;
+}
+#BannerEnelaireIzq p{ color: #FFF;
+}
+#FotoEnelaireIzq {
+    position:relative;
+    float:left;
+    width:137px;
+    height: 100px;
+    margin:10px 0 0 0;
+    display:block;
+    float:left;
+    overflow:hidden;
+}
+
+#FotoEnelaireIzq img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#BannerEnelaireBgLeft { position:absolute; top:50px; left:0; width:5px; height:138px; background-image:url(./imgs/bg-left.jpg);
+}
+#BannerEnelaireBgRight { position:absolute; top:50px; right:0; width:5px; height:138px; background-image:url(./imgs/bg-right.jpg);
+}

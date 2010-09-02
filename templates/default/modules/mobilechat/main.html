@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<?php
+  // Copyright 2009 Google Inc. All Rights Reserved.
+  $GA_ACCOUNT = "MO-6471350-1";
+  $GA_PIXEL = "/ga.php";
+
+  function googleAnalyticsGetImageUrl() {
+    global $GA_ACCOUNT, $GA_PIXEL;
+    $url = "";
+    $url .= $GA_PIXEL . "?";
+    $url .= "utmac=" . $GA_ACCOUNT;
+    $url .= "&utmn=" . rand(0, 0x7fffffff);
+    $referer = $_SERVER["HTTP_REFERER"];
+    $query = $_SERVER["QUERY_STRING"];
+    $path = $_SERVER["REQUEST_URI"];
+    if (empty($referer)) {
+      $referer = "-";
+    }
+    $url .= "&utmr=" . urlencode($referer);
+    if (!empty($path)) {
+      $url .= "&utmp=" . urlencode($path);
+    }
+    $url .= "&guid=ON";
+    return str_replace("&", "&amp;", $url);
+  }
+?>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="index,follow" name="robots" />
+        <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+        <link href="pics/homescreen.png" rel="apple-touch-icon" />
+        <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+
+        <link href="<?php echo javascript_url; ?>iWebKit/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="<?php echo javascript_url; ?>iWebKit/javascript/functions.js" type="text/javascript"></script>
+
+        <!-- JQuery Min for Cool Things -->
+        <script src="<?php echo javascript_url; ?>jquery-<?php echo get_config('jquery:version'); ?>.min.js" type="text/javascript"></script>
+        <script src="<?php echo javascript_url; ?>jquery.color.js" type="text/javascript"></script>
+
+        <title>:: CVC :: Sala de chat movil </title>
+
+    </head>
+    <body>
+
+        <script type="text/javascript">
+
+            function reload() {
+                return setInterval(function()
+                {
+                    var last = $("#last").val();
+
+                    $.post( "<?php echo modules_url; ?>mobilechat/chat.php" ,
+                    {
+                        action: "reload",
+                        last: last
+                    },
+
+                    // Función que se invoca al terminar el script PHP correctamente.
+                    function( data ) {
+                        if( data.last == -1 ) return false;
+
+                        $("#chat").append( data.text );
+
+                        $("#last").val( data.last );
+
+                        window.location = "#" + data.last;
+                    }, "json"
+                );
+                }, ( <?php echo get_config('chat:refresh'); ?> * (1000) ) );
+            };
+
+            $(function() {
+                var interval;
+
+                $.post( "<?php echo modules_url; ?>mobilechat/chat.php" ,
+                {
+                    action: "load"
+                },
+
+                // Función que se invoca al terminar el script PHP correctamente.
+                function( data ) {
+                    $("#chat").append( data.text );
+
+                    $("#last").val( data.last );
+
+                    window.location = "#" + data.last;
+                }, "json"
+            );
+
+                interval = reload();
+
+                $("#send").click(function() {
+                    clearInterval( interval );
+
+                    var name = $("input#name").val();
+                    var image = "<? echo template_url; ?>imgs/red/users/noPic-user.jpg";
+                    var message = $("textarea#message").val();
+
+                    if( name == "" ) {
+                        $("input#name").animate({
+                            backgroundColor: "red"
+                        }, "slow");
+                        setTimeout(function(){
+                            $("input#name").animate({
+                                backgroundColor: "white"
+                            }, "slow");
+                        }, 2000);
+
+                        interval = reload();
+                        return false;
+                    }
+
+                    if( message == "" ) {
+                        $("textarea#message").animate({
+                            backgroundColor: "red"
+                        }, "slow");
+                        setTimeout(function(){
+                            $("textarea#message").animate({
+                                backgroundColor: "white"
+                            }, "slow");
+                        }, 2000);
+
+                        interval = reload();
+                        return false;
+                    }
+
+                    // Aca deberia ir el envio de datos al php que lo inserta en la base de datos.
+                    $.post( "<?php echo modules_url; ?>mobilechat/chat.php" ,
+                    {
+                        action: "add",
+                        name: name,
+                        image: image,
+                        message: message
+                    },
+
+                    // Función que se invoca al terminar el script PHP correctamente.
+                    function( html ) {
+                        if( html.indexOf("true") != -1 ) {
+                            $.post( "<?php echo modules_url; ?>mobilechat/chat.php" , { action: "reload", last: $("#last").val() },
+                            function( data ) {
+                                try {
+                                    if( data.last == -1 ) return false;
+
+                                    $("#chat").slideDown("slow").append( data.text );
+
+                                    $("#last").val( data.last );
+
+                                    window.location = "#" + data.last;
+                                } catch(err) {}
+                            }, "json" );
+                        }
+
+                        interval = reload();
+
+                        $("textarea#message").val("");
+                    }
+                );
+                });
+
+            });
+
+        </script>
+
+        <input type="hidden" id="last" />
+
+        <div id="topbar">
+            <div id="leftnav">
+                <a href="<?php echo base_url; ?>"><img alt="home" src="<?php echo javascript_url; ?>iWebKit/images/home.png" /></a>
+            </div>
+            <div id="title">Sala de Chat</div>
+        </div>
+        <div id="content">
+
+            <ul class="pageitem" id="chat">
+                <li class="form" onclick="window.location = '#messageform';" id="contentini"><button name="button">Ir al final</button></li>
+                <!-- Nueva sala de chat version móvil -->
+                <!-- Developed by Cronos Development -->
+                <!-- Román A. Sarria -->
+                <!-- :: Basada en iWebKit Framework -->
+
+            </ul>
+
+            <ul class="pageitem">
+                <li class="form" onclick="window.location = '#contentini';"><button name="button">Ir a arriba</button></li>
+            </ul>
+        </div>
+
+        <div id="messageform">
+            <ul class="pageitem">
+                <li class="form"><input placeholder="Nombre" type="text" class="comment" style="color: black;" id="name" /></li>
+                <li class="textbox"><textarea name="TextArea" class="name" style="margin-bottom: 4px; color: black;" id="message"></textarea></li>
+                <li class="form" id="send"><button name="button">Enviar</button></li>
+            </ul>
+        </div>
+        <div id="footer">
+	<a href="http://iwebkit.net">Powered by iWebKit</a></div>
+
+        <?php
+          $googleAnalyticsImageUrl = googleAnalyticsGetImageUrl();
+        ?>
+        <img src="<?= $googleAnalyticsImageUrl ?>" />
+
+
+    </body>
+</html>
