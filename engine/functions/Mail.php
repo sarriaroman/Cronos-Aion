@@ -29,10 +29,7 @@ class SmtpMail {
     public function send() {
         if( get_config("smtp:enabled") == "false" ) {
             return $this->sendTypicalMail();
-            
-        }
-        if( get_config("mail:testing") == "true" ) {
-            return $this->sendFromGmail();
+
         }
 
         $mail             = new PHPMailer();
@@ -88,39 +85,6 @@ class SmtpMail {
             return true;
         } else {
             return false;
-        }
-    }
-
-    private function sendFromGmail() {
-        $mail             = new PHPMailer();
-
-        $mail->IsSMTP();
-        $mail->SMTPAuth   = true;                  // enable SMTP authentication
-        $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-        $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
-        $mail->Port       = 465;                   // set the SMTP port
-
-        $mail->Username   = "agustin478@gmail.com";  // GMAIL username
-        $mail->Password   = "TZO13master";            // GMAIL password
-
-        $mail->From       = "agustin478@gmail.com";
-        $mail->FromName   = "Cronos Development";
-        $mail->Subject    = $this->subject . " (GMAIL Account)";
-        $mail->AltBody    = "This is the body when user views in plain text format"; //Text Body
-        $mail->WordWrap   = 50; // set word wrap
-
-        $mail->MsgHTML($this->body);
-
-        $mail->AddReplyTo( $this->from );
-
-        $mail->AddAddress( $this->address );
-
-        $mail->IsHTML(true); // send as HTML
-
-        if(!$mail->Send()) {
-            return false;
-        } else {
-            return true;
         }
     }
 }

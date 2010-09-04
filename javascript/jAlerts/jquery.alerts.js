@@ -115,7 +115,7 @@
 					});
 				break;
 				case 'confirm':
-					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
+					$("#popup_message").after('<div id="popup_panel"><btn id="popup_ok" type="submit" ><span><span>' + $.alerts.okButton + '</span></span></btn> <btn id="popup_cancel" type="submit" ><span><span>' + $.alerts.cancelButton + '</span></span></btn></div>');
 					$("#popup_ok").click( function() {
 						$.alerts._hide();
 						if( callback ) callback(true);

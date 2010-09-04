@@ -1,0 +1,34 @@
+<div id="sidebar">
+    <ul class="sideNav">
+        <li><a href="<?php echo base_url; ?>admin.php?section=home">Registro de Cambios</a></li>
+        <li><a href="<?php echo base_url; ?>admin.php?section=home&module=general" class="active">Conf. Generales</a></li>
+        <li><a href="<?php echo base_url; ?>admin.php?section=home&module=changepassword">Cambiar Contraseña</a></li>
+    </ul>
+    <!-- // .sideNav -->
+</div>
+<!-- // #sidebar -->
+
+<!-- h2 stays for breadcrumbs -->
+<h2><a href="#">Inicio</a> &raquo; <a href="#" class="active">Conf. Generales</a></h2>
+
+<div id="main">
+    <h3>Configuraciones Generales</h3>
+
+    <!--<h3>Inicio</h3>
+    <?php input("ID de categoria para noticias al inicio", "homenoticias", "home:noticias"); ?>
+    <?php input("ID de categoria para modulo de Aprendiendo", "homeaprendiendo", "home:aprendiendo"); ?>
+    <?php input("ID de Galeria", "homegaleria", "home:galeria"); ?>
+    <?php input("ID de categoria para Recetas", "homerecetas", "home:recetas"); ?>
+    <?php input("ID de categoria para Teen News", "hometeennews", "home:teennews"); ?>-->
+
+    <h3>Google Analytics</h3>
+    <?php input("Codigo de Seguimiento ( UA-xxxxxx-x )", "googleanalytics", "google:analytics"); ?>
+
+    <h3>Versiones jQuery</h3>
+    <p class='msg info'><strong>Atención!</strong> La alteración de estas opciones puede dejar el sitio sin funcionamiento!</p>
+
+    <?php input("jQuery Version", "jqueryversion", "jquery:version"); ?>
+    <?php input("jQuery UI Version", "jqueryuiversion", "jquery:uiversion"); ?>
+
+</div>
+<!-- // #main -->

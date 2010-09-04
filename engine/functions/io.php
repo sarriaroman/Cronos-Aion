@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
 */
@@ -45,11 +45,15 @@ function input( $label, $name, $key ) {
         });';
     echo "</script>";
 
-    echo "<form>";
-    echo $label . ':<br /><input name="textfield" type="text" id="' . $name . '" class="text" value="' . get_config($key) . '" size="100" />';
-
+    echo '<form class="jNice">';
+    echo "<fieldset>";
+    echo "<p>";
+    echo "<label>" . $label . ":</label>";
+    echo '<input name="textfield" type="text" id="' . $name . '" class="text-long" value="' . get_config($key) . '" size="100" /><div id="response-' . $name . '"></div>';
+    echo "</p>";
     echo '<input type="submit" id="button-' . $name . '" value="Guardar" />';
-    echo '<br /><div id="response-' . $name . '"></div>';
+    echo '';
+    echo "</fieldset>";
     echo "</form>";
 }
 
@@ -104,11 +108,15 @@ function textarea( $label, $name, $key, $w ) {
         });';
     echo "</script>";
 
-    echo "<form>";
-    echo $label . ':<br /><textarea cols="100" rows="5" class="text" id="' . $name . '">' . get_config($key) . '</textarea>';
-
+    echo "<form class='jNice'>";
+    echo "<fieldset>";
+    echo "<p>";
+    echo "<label>" . $label . ":</label>";
+    echo '<textarea id="' . $name . '">' . get_config($key) . '</textarea>';
+    echo "</p>";
     echo '<div id="response-' . $name . '"></div>';
-    echo '<br /><input type="button" id="button-' . $name . '" value="Guardar" />';
+    echo '<input type="submit" id="button-' . $name . '" value="Guardar" />';
+    echo "</fieldset>";
     echo "</form>";
 }
 

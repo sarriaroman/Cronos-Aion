@@ -4,36 +4,20 @@ class User {
     var $con;
 
     var $uid;
-    var $ulevel;
     var $name;
+    var $username;
     var $password;
-    var $image;
-    var $company;
-    var $position;
+    var $address;
     var $email;
-    var $description;
     var $telephone;
-    var $website;
-    var $banned;
-
-    var $quota;
-
-    var $extras = array();
+    var $level;
 
     static $admin = 0;
-    static $partner = 1;
-    static $common = 2;
+    static $common = 1;
+    static $mailing = 5;
 
     function __construct( $email = "" ) {
         global $dbprefix;
-
-        $ext = $this->connection()->make_request("select name from {$dbprefix}extra_fields where enabled = '1'");
-
-        $extra = mysql_fetch_array( $ext, MYSQL_ASSOC );
-
-        while( $extra ) {
-            array_merge( $this->extras, array( $extra['name'] => "" ) );
-        }
 
         if( $email != "" )
             $this->complete_all_data( $email );
@@ -50,13 +34,18 @@ class User {
         global $dbprefix;
 
         $conn = new Connection();
-        $req = $conn->make_request("SELECT password FROM {$dbprefix}profile WHERE email = '{$email}'");
+        if( strpos($email, "@") == true ) {
+            $sql = "SELECT password FROM {$dbprefix}profile WHERE email = '{$email}'";
+            $req = $conn->make_request( $sql );
+        } else {
+            $req = $conn->make_request("SELECT email, password FROM {$dbprefix}profile WHERE username = '{$email}'");
+        }
 
         $rst = mysql_fetch_array( $req, MYSQL_ASSOC );
 
         if( !empty($rst) ) {
             if( $rst['password'] == md5($password) ) {
-                $user = new User( $email );
+                $user = new User( (strpos($email, "@")) ? $email : $rst['email'] );
                 return $user;
             } else {
                 return false;
@@ -64,6 +53,37 @@ class User {
         } else {
             return false;
         }
+    }
+
+    public static function getUser( $email ) {
+        global $dbprefix;
+
+        $conn = new Connection();
+        if( strpos($email, "@") == true ) {
+            $sql = "SELECT email FROM {$dbprefix}profile WHERE email = '{$email}'";
+            $req = $conn->make_request( $sql );
+        } else {
+            $req = $conn->make_request("SELECT email FROM {$dbprefix}profile WHERE username = '{$email}'");
+        }
+
+        $rst = mysql_fetch_array( $req, MYSQL_ASSOC );
+
+        return new User( $rst['email'] );
+    }
+
+    public static function exist( $email ) {
+        global $dbprefix;
+
+        $conn = new Connection();
+        if( strpos($email, "@") == true ) {
+            $sql = "SELECT email FROM {$dbprefix}profile WHERE email = '{$email}'";
+            $req = $conn->make_request( $sql );
+        } else {
+            return false;
+        }
+
+        if( mysql_num_rows( $req ) == 1 ) return true;
+        else return false;
     }
 
     public function complete_all_data( $email ) {
@@ -75,43 +95,15 @@ class User {
 
         if( !empty( $rst ) ) {
             $this->uid 			= $rst['id'];
-            $this->ulevel 			= $rst['level'];
+            $this->level 			= $rst['level'];
             $this->name 			= $rst['name'];
             $this->password		= $rst['password'];
-            $this->image			= $rst['image'];
-            $this->company		= $rst['company'];
-            $this->position		= $rst['position'];
+            $this->username			= $rst['username'];
             $this->email			= $rst['email'];
-            $this->description	= $rst['description'];
-            $this->telephone		= $rst['telephone'];
-            $this->website		= $rst['website'];
-            $this->banned			= $rst['banned'];
-
-            $this->quota = User::get_quota( $this->uid );
-
-            if( count( $ext = $this->connection()->make_request("select name from {$dbprefix}extra_fields where enabled = '1'") ) > 0 ) {
-                while( $extra = mysql_fetch_array( $ext, MYSQL_ASSOC ) ) {
-                    $value = $this->connection()->make_request("select data from {$dbprefix}fields_data where uid = '{$this->uid}' and name = '{$extra['name']}'");
-                    array_merge( $this->extras, array( $extra['name'] => $value['data'] ) );
-                }
-            }
+            $this->telephone		= $rst['phone'];
+            $this->address		= $rst['address'];
         }
     }
-
-    public static function get_quota( $uid ) {
-        global $dbprefix;
-
-        $con = new Connection();
-
-        $sql = "select sec_to_time(sum(time_to_sec(duration))) from {$dbprefix}podcast where uid = {$uid}";
-
-        $req = $con->make_request($sql);
-
-        $rst = mysql_fetch_array( $req, MYSQL_NUM );
-
-        return $rst[0];
-    }
-
     public static function get_user_by_id( $id ) {
         global $dbprefix;
 
@@ -124,39 +116,16 @@ class User {
         }
     }
 
-    public static function is_blog_admin( $id ) {
-        global $dbprefix;
-
-        $conn = new Connection();
-        $req = $conn->make_request("select id from {$dbprefix}programs where admin_uid = '{$id}'");
-        $rst = mysql_fetch_array( $req, MYSQL_ASSOC );
-        if( !empty( $rst ) ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function is_level( $lvl ) {
-        return ( $this->ulevel == $lvl );
-    }
-
-    public function ban( $uid ) {
-        global $dbprefix;
-
-        $rst = $this->connection()->update_data("UPDATE {$dbprefix}profile SET banned = 1 WHERE id = '{$uid}'");
-        return !empty( $rst ) ? true : false;
+        return ( $this->level == $lvl );
     }
 
     public function delete( ) {
         global $dbprefix;
 
         $rst = $this->connection()->delete_data("DELETE FROM {$dbprefix}profile WHERE id = '{$this->uid}'");
-        if( $rst ) {
-            $ext = $this->connection()->delete_data("delete from {$dbprefix}fields_data where uid = '{$this->uid}'");
-        }
 
-        return ( $ext ) ? true : false;
+        return ( $rst ) ? true : false;
     }
 
     public function save() {
@@ -164,49 +133,28 @@ class User {
 
         if( $this->uid != "" ) {
             $sql = "UPDATE {$dbprefix}profile SET
-                  name = '" 			. $this->name .
-                "', level = '" 			. $this->ulevel .
+                    name = '" 			. $this->name .
+                "', level = '" 			. $this->level .
                 "', password = '"		. $this->password .
-                "', image = '"			. $this->image .
-                "', company = '"		. $this->company .
+                "', username = '"		. $this->username .
                 "', email = '"			. $this->email .
-                "', description = '"	. $this->description .
-                "', telephone = '"		. $this->telephone .
-                "', website = '"		. $this->website .
+                "', phone = '"                  . $this->telephone .
+                "', address = '"		. $this->address .
                 "' WHERE id = '" . $this->uid . "'";
 
             $upd = $this->connection()->update_data( $sql );
-            
-            if( count( $extra = $this->connection()->make_request("select name from {$dbprefix}extra_fields where enabled = '1'") ) > 0 ) {
-                foreach( $this->extras as $key => $value ) {
-                    $ext = $this->connection()->update_data("update {$dbprefix}fields_data set data = '{$value}'
-														 		where uid = '{$this->uid}' 
-																and name = {$key}"
-                    );
-                }
-            }
+
             return $upd;
         } else {
-            $new = $this->connection()->insert_data("INSERT INTO {$dbprefix}profile (name, level, password, image, company, email, description, telephone, website) VALUES
+            $new = $this->connection()->insert_data("INSERT INTO {$dbprefix}profile (name, username, password, address, email, phone, level) VALUES
 														('" . $this->name . 			"',
-                                                                                                                 '" . $this->ulevel . 			"',
+                                                                                                                 '" . $this->username . 			"',
 														 '" . $this->password . 		"',
-														 '" . $this->image . 			"',
-														 '" . $this->company . 		"',
-														 '" . $this->email . 			"',
-														 '" . $this->description . 	"',
-														 '" . $this->telephone . 		"',
-														 '" . $this->website . 		"')
+														 '" . $this->address . 			"',
+														 '" . $this->email . 		"',
+														 '" . $this->telephone . 			"',
+														 '" . $this->level . 		"')
 												 ");
-            if( count( $extra = $this->connection()->make_request("select name from {$dbprefix}extra_fields where enabled = '1'") ) > 0 ) {
-                foreach( $this->extras as $key => $value ) {
-                    $next = $this->connection()->insert_data("insert into {$dbprefix}fields_data (uid, name, data) VALUES
-																('" . $this->uid . "',
-																 '" . $key . 					 "',
-																 '" . $value . 					 "'
-														   )");
-                }
-            }
             return !empty( $new ) ? true : false;
         }
     }

@@ -1,5 +1,21 @@
 Autor: Román A. Sarria
 Empresa: Cronos Development
 
-Version: 0.3
-Info: First generic beta
+Version: 0.8
+Info: Second beta.
+
+This version has hard changes.
+ - New engine libraries.
+ - Many classes were rewritten.
+ - New superclasses.
+ - New Javascript libraries.
+ - New admin panel.
+ - New templates structure.
+ - New sections in admin panel.
+ - Friendly urls.
+
+To-Do:
+ - Access control.
+ - Plugins modules.
+ - More powerful friendly engine.
+ - Better administration panel.

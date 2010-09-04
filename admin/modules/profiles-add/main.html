@@ -1,0 +1,132 @@
+<?php
+include( admin_modules_dir . "profiles-add/profiles.php");
+?>
+
+<script type="text/javascript">
+    $(function(){
+
+        $("#saveprofile").click( function(){
+
+            var url_send = "<?php echo actions_url; ?>admin.php";
+
+            var name = $("input#uname").val();
+            var username = $("input#username").val();
+            var email = $("input#uemail").val();
+            var pass = $("input#upass").val();
+
+            var level = $("#cblevelprofile").val();
+
+            if( name == "" || username == "" || email == "" || pass == "" ) {
+                $("#uresponse").fadeIn('slow');
+                $("#uresponse").html("<p class='msg warning'>Faltan completar campos</p>");
+
+                setTimeout(function() {
+                    $("#uresponse").fadeOut('slow');
+                }, 2000);
+
+                return false;
+            }
+
+            var vars = "action=addprofile&name=" + name + "&username=" + username + "&email=" + email + "&pass=" + pass + "&level=" + level;
+            $.ajax({
+                type: "POST",
+                url: url_send,
+                data: vars,
+                success: function(html) {
+
+                    if( html.indexOf("Error") != -1 ) {
+                        $("#uresponse").fadeIn('slow');
+                        $("#uresponse").text(html);
+
+                        setTimeout(function() {
+                            $("#uresponse").fadeOut('slow');
+                        }, 2000);
+
+                        return false;
+                    }
+
+                    $("#profiles").fadeOut('slow');
+                    $("#profiles").html(html);
+                    $("#profiles").fadeIn('slow');
+
+                    //$("#posts").load("<?php actions_dir; ?>admin.php?action=loadhelp");
+
+                    $("input#uname").val("");
+                    $("input#uemail").val("");
+                    $("input#upass").val("");
+
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    function deleteProfile(id, text) {
+        jConfirm('Esta seguro que desea eliminar lo siguiente:\n\n' + text, 'Confirmación', function(r) {
+            if( r ) {
+                $('#profiles').load("<?php echo actions_url; ?>admin.php?action=deleteprofile&id=" + id);
+            }
+        });
+    };
+</script>
+
+<div id="sidebar">
+    <ul class="sideNav">
+        <li><a href="<?php echo base_url; ?>admin.php?section=profiles" class="active">Perfiles</a></li>
+    </ul>
+    <!-- // .sideNav -->
+</div>
+<!-- // #sidebar -->
+
+<!-- h2 stays for breadcrumbs -->
+<h2><a href="#">Perfiles</a> &raquo; <a href="#" class="active">Agregar</a></h2>
+
+<div id="main">
+
+    <h3>Carga de Tema</h3>
+
+    <form id="data" method="post" class="jNice">
+        <fieldset>
+            <input type="hidden" id="subcategoryid" />
+
+            <p>
+                <label>Nombre:</label>
+                <input type="text" class="text-long" id="uname" />
+            </p>
+            <p>
+                <label>Nombre de Usuario:</label>
+                <input type="text" class="text-long" id="username" />
+            </p>
+            <p>
+                <label>E-Mail:</label>
+                <input type="text" class="text-long" id="uemail" />
+            </p>
+            <p>
+                <label>Clave:</label>
+                <input type="text" class="text-long" id="upass" />
+            </p>
+            <p>
+                <label>Tipo de Usuario:</label>
+                <select id="cblevelprofile" class="select">
+                    <option value="1">Usuario</option>
+                    <option value="0">Administrador</option>
+                </select>
+            </p>
+
+            <input type="submit" id="saveprofile" value="Guardar" />
+        </fieldset>
+    </form>
+
+    <div id="uresponse"></div>
+
+    <h3>Perfiles</h3>
+
+    <table cellpadding="0" cellspacing="0" id="profiles" class="table">
+        <?php
+        loadProfiles();
+        ?>
+    </table>
+</div>
