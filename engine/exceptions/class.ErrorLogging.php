@@ -1,15 +1,4 @@
 <?php
-/**
-* This class handles and logs the error that occurs in the project
-*
-* @author Nitesh Apte
-* @copyright 2010
-* @version 1.0
-* @access private
-* @License GPL
-*/
-
-include_once 'conf.inc';
 
 class ErrorLogging
 {

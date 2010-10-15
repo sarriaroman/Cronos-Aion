@@ -63,12 +63,6 @@
 		echo "Error cargando la libreria LOG<br />";
 	}
 
-        // Clase de manejo XML / JSON
-        if (!include_once( dirname(__FILE__) . "/parser/parser.php" )) {
-            echo "Error cargando las librerias<br />";
-            exit;
-        }
-
         // Verifico que el motor de la plataforma este inicializado
         //if( !verify_initilization() ) header( "Location:" . base_url );
 

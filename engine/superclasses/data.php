@@ -72,7 +72,7 @@ class DataObject {
      * @param <mixed> $value for the property
      * @return nothing
      */
-    private function __set($property, $value) {
+    public function __set($property, $value) {
         //Compruebo si la propiedad existe
         if(!array_key_exists($property, $this->ar_vars)) die("Inexistent property '$property'!. __set()");
 
@@ -94,7 +94,7 @@ class DataObject {
      * @param <string> $property
      * @return nothing
      */
-    private function __get($property) {
+    public function __get($property) {
 
         //Compruebo si la propiedad existe
         if(!array_key_exists($property, $this->ar_vars)) die("Inexistent property '$property'!. __get()");
