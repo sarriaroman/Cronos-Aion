@@ -14,7 +14,7 @@
         // Gestor de excepciones
         if ( !include_once( dirname(__FILE__) . "/exceptions/class.ErrorLogging.php" ) ) {
 		echo "Error cargando el gestor de excepciones<br />";
-	}
+	} else new ErrorLogging();
 
         // Clase de gestion de idiomas
 	if ( !include_once( dirname(__FILE__) . "/language/language.php" ) ) {

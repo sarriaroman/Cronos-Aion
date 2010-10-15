@@ -79,7 +79,7 @@ class ErrorLogging
 	 * @param none
 	 * @return none
 	 */
-	private function __construct()
+	public function __construct()
 	{
 		error_reporting(1);
 		set_error_handler(array($this,'_customError'), E_ALL ^ E_NOTICE);
@@ -95,7 +95,7 @@ class ErrorLogging
 	 * @param Int $errLine Error line
 	 * @return none
 	 */
-	private function _customError($errNo, $errStr, $errFile, $errLine)
+	public function _customError($errNo, $errStr, $errFile, $errLine)
 	{
 		if(error_reporting()==0)
 		{
@@ -136,7 +136,7 @@ class ErrorLogging
 	 * @param $_entriesMade Irrelevant entries in debug_backtrace, first two characters 
 	 * @return  
 	 */
-	private function _debugBacktrace($_entriesMade)
+	public function _debugBacktrace($_entriesMade)
 	{
 		$this->_traceArray = debug_backtrace();
 		
@@ -195,7 +195,7 @@ class ErrorLogging
 		return $this->_traceMessage;
 	}
 	
-	private function _fatalError()
+	public function _fatalError()
 	{
 		$this->_lastError = error_get_last();
 		if($this->_lastError['type'] == 1 || $this->_lastError['type'] == 4 || $this->_lastError['type'] == 16 || $this->_lastError['type'] == 64 || $this->_lastError['type'] == 256 || $this->_lastError['type'] == 4096)
