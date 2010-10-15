@@ -20,6 +20,16 @@
 	// Clave
 	$key = "password";
 
+        // Admin email
+
+        $aemail = "agustin478@gmail.com";
+
+        // Error logging
+
+        $debugging = true;
+        $erroremail = false;
+        $errorfile = true;
+
 	// Lenguaje
 	$lng_file = "es_ar";
 

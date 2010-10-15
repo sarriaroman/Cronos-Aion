@@ -11,12 +11,9 @@
 		echo "Error cargando las configuraciones<br />";
 	}
 
-	// Carga el motor de excepciones y errores
-	/*if ( !include_once( dirname(__FILE__) . "/exceptions/errorhandler.php" ) ) {
-		echo "Error cargando las configuraciones<br />";
-	}*/
-	if ( !include_once( dirname(__FILE__) . "/exceptions/exceptionhandler.php" ) ) {
-		echo "Error cargando las configuraciones<br />";
+        // Gestor de excepciones
+        if ( !include_once( dirname(__FILE__) . "/exceptions/class.ErrorLogging.php" ) ) {
+		echo "Error cargando el gestor de excepciones<br />";
 	}
 
         // Clase de gestion de idiomas
@@ -61,6 +58,16 @@
         if ( !include_once( dirname(__FILE__) . "/functions/io.php" ) ) {
 		echo "Error cargando la libreria IO<br />";
 	}
+        
+        if ( !include_once( dirname(__FILE__) . "/log/log.php" ) ) {
+		echo "Error cargando la libreria LOG<br />";
+	}
+
+        // Clase de manejo XML / JSON
+        if (!include_once( dirname(__FILE__) . "/parser/parser.php" )) {
+            echo "Error cargando las librerias<br />";
+            exit;
+        }
 
         // Verifico que el motor de la plataforma este inicializado
         //if( !verify_initilization() ) header( "Location:" . base_url );

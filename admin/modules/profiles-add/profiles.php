@@ -6,7 +6,7 @@ function loadProfiles() {
 
     $con = new Connection();
 
-    $sql = "select id, name, username, email, level from {$dbprefix}profile";
+    $sql = "select id, name, username, email, level from {$dbprefix}users";
 
     $req = $con->make_request($sql);
 

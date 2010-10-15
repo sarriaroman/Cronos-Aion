@@ -49,4 +49,16 @@ define("actions_url", base_url . "actions/",                                    
 // Friendly url
 define("friendly_base", base_url . $friendly . "/", false);
 
+/**
+ * Error Handling Values
+ */
+define('DEBUGGING', $debugging );
+define('ADMIN_ERROR_MAIL', $aemail );
+define('SEND_ERROR_MAIL', $erroremail );
+define('SEND_ERROR_FROM', 'errors@admin.com');
+define('IS_WARNING_FATAL', TRUE);
+define('ERROR_LOGGING', $errorfile );
+define('ERROR_LOGGING_FILE', base_dir );
+define('SITE_GENERIC_ERROR_MSG', '<h1>Portal Error!</h1>');
+
 ?>
