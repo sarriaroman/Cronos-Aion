@@ -103,7 +103,7 @@ switch ( $action ) {
 
         if (($user = User::validate($email, $psw))) {
             if ($user->is_level(User::$admin)) {
-                if (create_session($user->email)) {
+                if (create_session($user->email, "admin")) {
                     echo "<login: ok>";
                 } else {
                     echo "<p class='msg warning'>Hubo un error al crear la sesión</p>";
@@ -117,8 +117,8 @@ switch ( $action ) {
         break;
 
     case "logout":
-        close_session();
-        echo "<logout: ok>";
+        close_session("admin");
+        //echo "<logout: ok>";
 
         header("Location: " . base_url . "admin.php");
 

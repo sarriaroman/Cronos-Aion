@@ -1,5 +1,5 @@
 <?php
-if( ($email = check_session()) ) {
+if( ($email = check_session("admin")) ) {
     $user = new User( $email );
     if( $user->is_level( User::$admin ) ) {
         if( isset( $_GET['section'] ) ) {
