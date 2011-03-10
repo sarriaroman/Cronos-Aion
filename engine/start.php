@@ -14,7 +14,7 @@
         // Gestor de excepciones
         if ( !include_once( dirname(__FILE__) . "/exceptions/class.ErrorLogging.php" ) ) {
 		echo "Error cargando el gestor de excepciones<br />";
-	} else new ErrorLogging();
+	}
 
         // Clase de gestion de idiomas
 	if ( !include_once( dirname(__FILE__) . "/language/language.php" ) ) {
@@ -40,6 +40,10 @@
 
         if ( !include_once( dirname(__FILE__) . "/functions/functions.php" ) ) {
 		echo "Error cargando las funciones<br />";
+	}
+
+        if ( !include_once( dirname(__FILE__) . "/functions/plugins.php" ) ) {
+		echo "Error cargando las funciones de plugins<br />";
 	}
 
         // Clase que habilita la funcionalidad de Sesiones del Framework
@@ -69,6 +73,12 @@
 	// Clase de conexion
 	if ( !include_once( dirname(__FILE__) . "/connection/connection.php" ) ) {
 		echo "Error cargando la libreria de conexion<br />";
+		exit;
+	}
+
+        // Clase de gestion de idiomas
+	if ( !include_once( dirname(__FILE__) . "/language/language_from_database.php" ) ) {
+		echo "Error cargando la libreria de idioma<br />";
 		exit;
 	}
 

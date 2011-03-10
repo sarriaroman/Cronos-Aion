@@ -30,7 +30,7 @@ body {
 	margin: 15px 0 10px 5px;
 	width: 280px;
 	height: 100px;
-	background: url(../img/cronos.png) no-repeat left top;
+	background: url(../img/logo.png) no-repeat left top;
 }
 
 #logo a {
@@ -63,7 +63,7 @@ h1 span { display: none; }*/
 	height: 37px;
 	padding: 6px;
 	margin: 0 0 30px 0;
-	background: url(../img/top-menu-bg.gif) no-repeat left top; 
+	background: url(../img/top-menu-bg.gif) no-repeat left top;
 	/* We used a background image making the thick border and the thin one to keep the html structure simple */
 }
 
@@ -131,6 +131,29 @@ h1 span { display: none; }*/
 	line-height: 29px;
 	padding: 0 19px;
 	width: 141px;
+}
+
+#sidebar .sideNav li span {
+	display: block;
+	color: #222222;
+	background: white;
+	text-decoration: none;
+	height: 29px;
+	line-height: 29px;
+	padding: 0 10px;
+	width: 141px;
+}
+
+#sidebar .sideNav li #head {
+	display: block;
+	color: #222222;
+	background: white;
+	text-decoration: none;
+	height: 29px;
+	line-height: 29px;
+	padding: 0;
+	width: 179px;
+        text-align: center;
 }
 
 #sidebar .sideNav li a:hover { background: #fdfcf6; }
@@ -205,9 +228,17 @@ h3 {
 }
 
 #main .table tr .action a { margin: 0 0 0 10px; text-decoration: none; color: #9b9b9b; }
-#main .table tr:hover .action .edit { color: #c5a059; }
-#main .table tr:hover .action .delete { color: #a02b2b; }
-#main .table tr:hover .action .view { color: #55a34a; }
+#main .table tr:hover .action .edit { color: #c5a059; cursor: pointer; }
+#main .table tr:hover .action .delete { color: #a02b2b; cursor: pointer; }
+#main .table tr:hover .action .view { color: #55a34a; cursor: pointer; }
+
+#main .table tr .action .edit a { text-decoration: none; cursor: pointer; color: #c5a059; }
+#main .table tr .action .delete a { text-decoration: none; cursor: pointer; color: #a02b2b; }
+#main .table tr .action .view a { text-decoration: none; cursor: pointer; color: #55a34a; }
+
+#main .table tr:hover .action .edit a { text-decoration: none; cursor: pointer; color: #c5a059; }
+#main .table tr:hover .action .delete a { text-decoration: none; cursor: pointer; color: #a02b2b; }
+#main .table tr:hover .action .view a { text-decoration: none; cursor: pointer; color: #55a34a; }
 
 #main .table tr:hover .action a:hover { text-decoration: underline; }
 
@@ -260,7 +291,7 @@ h3 {
 	margin: 0 10px 0 0;
 }
 
-#main fieldset .text-long:focus, 
+#main fieldset .text-long:focus,
 #main fieldset .text-medium:focus,
 #main fieldset .text-small:focus,
 #main fieldset textarea:focus { background: #fdfcf6 url(../img/input-shaddow-hover.gif) no-repeat left top; }

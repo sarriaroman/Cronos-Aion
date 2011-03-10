@@ -1,0 +1,1238 @@
+/* #### Modulo HEADER #### */
+body {
+    font-family: 'CenturyGothicRegular';
+    color: white;
+}
+img {
+    border: 0;
+}
+root { 
+    display: block;
+}
+#main {
+    display: block;
+    clear: both;
+    height: auto;
+    width: 900px;
+    margin-top: 25px;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    overflow: hidden;
+}
+#header {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 15px;
+}
+
+#logo {
+    display: block;
+    float: left;
+    left: 15px;
+    position: relative;
+}
+
+#language {
+    position: absolute;
+    margin-left: 780px;
+    margin-top: -20px;
+}
+#language .flag {
+}
+#language .flag img {
+    cursor: pointer;
+    width: 25px;
+}
+#language .flag .label {
+    color: blue;
+}
+
+#signin {
+    margin-left: 400px;
+    margin-top: 67px;
+    position: absolute;
+}
+#signin input {
+    background-image: url(../images/button.png);
+    background-repeat: no-repeat;
+    height: 41px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    width: 150px;
+    border: 0px;
+}
+#signin #pass {
+    margin-left: 10px;
+}
+
+#logout {
+    color: blue;
+    margin-left: 650px;
+    margin-top: 40px;
+    position: absolute;
+}
+#logout #image {
+    position: absolute;
+}
+#logout #userdata {
+    margin-left: 60px;
+    position: absolute;
+    width: 160px;
+}
+#logout #userdata #profile {
+    font-size: 12px;
+    margin-top: 20px;
+    position: absolute;
+}
+#logout #userdata #btn-logout {
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 20px;
+    position: absolute;
+    text-decoration: underline;
+}
+#logout #userdata #btn-profile_edit {
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 110px;
+    margin-top: 20px;
+    position: absolute;
+    text-decoration: underline;
+}
+input::-webkit-input-placeholder {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+input:-moz-placeholder {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#top-button {
+    display: block;
+    float: right;
+    margin-right: 20px;
+    margin-top: 50px;
+}
+
+#top-button ul {
+    list-style: none;
+}
+
+#top-button ul li {
+    background-image: url(../images/button_focus.png);
+    background-repeat: no-repeat;
+    float: left;
+    margin-left: 10px;
+    width: 148px;
+    height: 41px;
+    text-align: center;
+    padding-top: 11px;
+    cursor: pointer;
+}
+
+#top-button ul li:hover {
+    background-image: url(../images/button_focus.png);
+}
+#top-button .menu-selected {
+    background-image: url(../images/button_focus.png);
+    background-repeat: no-repeat;
+}
+#btn-back {
+}
+#btn-next {
+    margin-left: 350px;
+}
+.advantages2-btns {
+    margin-left: 300px;
+    margin-top: -200px;
+    position: absolute;
+}
+.bottom-button {
+    color: white;
+    display: block;
+    font-weight: bold;
+    margin-right: 20px;
+    margin-top: 120px;
+    position: absolute;
+}
+
+.bottom-button ul {
+    list-style: none;
+    position: absolute;
+}
+
+.bottom-button ul li {
+    background-image: url(../images/btn-next.png);
+    background-repeat: no-repeat;
+    float: left;
+    margin-left: 10px;
+    width: 148px;
+    height: 41px;
+    text-align: center;
+    padding-top: 11px;
+    cursor: pointer;
+}
+.bottom-button ul li:hover {
+    background-image: url(../images/button_focus.png);
+}
+#border {
+    z-index: 999;
+    position: relative;
+    clear: both;
+    width: 100%;
+    box-shadow: 0px 0px 3px #222;
+    -webkit-box-shadow: 0px 0px 3px #222;
+    -moz-box-shadow: 0px 0px 3px #222;
+}
+#menu {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    color: black;
+    font-size: 14px;
+    border-bottom: 1px #A7A7A7 solid;
+    margin-left: -50px;
+}
+#menu ul {
+    margin-left: 45px;
+    list-style: none;
+    text-align: center;
+}
+#menu ul li {
+    z-index: 1;
+    float: left;
+    width: 118px;
+    height: 41px;
+    text-align: center;
+    padding-top: 11px;
+    cursor: pointer;
+    margin-top: -14px;
+    margin-bottom: -12px;
+}
+#menu ul li:hover {
+    background-image: url(../images/button_focus.png);
+    background-repeat: no-repeat;
+}
+.menu-selected {
+    background-image: url(../images/button_focus.png);
+    background-repeat: no-repeat;
+}
+
+.sub-menu {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    color: black;
+    font-size: 14px;
+    border-bottom: 1px #A7A7A7 solid;
+}
+.sub-menu ul {
+    margin-left: 35px;
+    list-style: none;
+    text-align: center;
+}
+.sub-menu ul li {
+    z-index: 1;
+    float: left;
+    width: 148px;
+    height: 31px;
+    text-align: center;
+    padding-top: 8px;
+    cursor: pointer;
+    margin-top: -14px;
+    margin-bottom: -12px;
+}
+.sub-menu ul li:hover {
+    color: green;
+}
+.sub-menu-selec {
+    color: green;
+}
+/* ---- FIN modulo HEADER ---- */
+
+/* #### Modulo FOOTER #### */
+#text-bottom-bar {
+    padding-top: 7px;
+    padding-right: 20px;
+    text-align:right;
+    font-size: 20px;
+}
+#bottom-bar {
+    position: relative;
+    clear: both;
+    width: 100%;
+    height: 34px;
+    box-shadow: 0px 0px 4px #222;
+    -webkit-box-shadow: 0px 0px 4px #222;
+    -moz-box-shadow: 0px 0px 4px #222;
+    background-image: url(../images/bottom-bar.png);
+}
+#red-sociales {
+    padding-left: 40px;
+    padding-top: 15px;
+}
+#bottom {
+    display: block;
+    clear: both;
+    width: 900px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+.bottom-box {
+    font-size: 12px;
+    width: 203px;
+    overflow: hidden;
+    display: block;
+    float: left;
+    color: #666666;
+    padding-left: 20px;
+    padding-top:  20px;
+}
+#separator {
+    width: 1px;
+    height: 100px;
+    float: left;
+    border-left: 1px #CCCCCC solid;
+}
+.bottom-box span {
+    text-align: left;
+}
+
+a:visited {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+.bottom-box a.link:link {
+    color: #666666;
+    text-decoration: none;
+}
+.bottom-box a.link:hover {
+    color: green;
+    text-decoration: none;
+}
+#copyright {
+    color: #333;
+    float: right;
+    font-size: 12px;
+    margin-top: -20px;
+}
+/* ---- FIN modulo FOOTER ---- */
+
+/* #### Modulo HOME #### */
+#content {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    clear: both;
+    margin-bottom: 40px;
+}
+#home-text-top {
+    float: left;
+    margin-top: 50px;
+    margin-left: 50px;
+    font-size: 28px;
+    color: #1441F5;
+}
+#home-text-bottom {
+    float: right;
+    margin-top: 400px;
+    margin-right: 20px;
+    font-size: 28px;
+    color: #1441F5;
+}
+/* ---- FIN modulo HOME ---- */
+
+/* #### Modulo REGISTER #### */
+#form {
+    color: gray;
+    margin-left: 50px;
+}
+#register {
+    position: relative;
+    width: 900px;
+    margin-bottom: 150px;
+}
+#register-img-izq #inf {
+    position: absolute;
+    z-index: -10;
+}
+#register #content #home-text-top {
+    font-size: 27px;
+}
+#register #title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+#register #form #campo {
+    margin-top: 10px;
+    font-size: 20px;
+    width: 100%;
+}
+#register #form #campo #label {
+    position: absolute;
+}
+#register #form #campo #input {
+    height: 25px;
+    margin-left: 200px;
+    width: 300px;
+    border-color:#666666;
+}
+#register #form #campo #input input[type=text] {
+    width: 300px;
+    height: 25px;
+    text-align: center;
+}
+#register #form #campo input[type=password] {
+    width: 300px;
+    height: 25px;
+    text-align: center;
+}
+#register #form #campo #cb_info {
+    width: 400px;
+    height: 25px;
+    text-align: center;
+}
+#register #form #campo #inputs-birth {
+    left: 150px;
+    position: relative;
+}
+#register #form #campo #inputs-birth {
+    left: 150px;
+    position: relative;
+    width: 400px;
+}
+#register #form #campo #inputs-birth #date {
+    position: relative;
+}
+#register #form #campo #inputs-birth #date #input {
+    width: 100px;
+}
+#register #form #campo #inputs-birth #day {
+}
+#register #form #campo #inputs-birth #year {
+}
+.input-user{
+    position: relative;
+    text-align: center;
+    width: 240px;
+}
+.input-date{
+    text-align: center;
+    width: 70px;
+}
+#register #form #campo .error-input {
+    color: red;
+    font-weight: bold;
+    left: 312px;
+    position: relative;
+    top: -25px;
+}
+
+#register #message {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: 30px;
+    position: absolute;
+    width: 500px;
+}
+/* ---- FIN modulo REGISTER ---- */
+
+/* #### Usado en todos los ADVANTAGES #### */
+#btn-next{
+    margin-bottom: 40px;
+}
+/* ---- FIN ADVANTAGES ---- */
+
+/* #### Modulos de ADVANTAGES 1 #### */
+#advantages1-content {
+    margin-top: 50px;
+}
+
+#advantages1-title {
+    margin-top: 30px;
+    position: absolute;
+}
+.advantages1-img-izq {
+
+}
+
+.advantages1-img-izq #sup {
+    position: absolute;
+}
+.advantages1-img-izq #sup img {
+    width: 150px;
+}
+
+.advantages1-img-izq #inf {
+    position: absolute;
+    margin-top: 650px;
+}
+.advantages1-img-izq #inf img {
+    width: 150px;
+}
+
+.point H2{
+    color:blue;
+    margin-top: 20px;
+    margin-left: 100px;
+    position: relative;
+    width: 500px;
+    font-weight: normal;
+}
+.line{
+    width: 550px;
+    margin-left: 100px;
+}
+.rectangle {
+    position: absolute;
+}
+.point .rectangle {
+    background-image: url(../images/point.png);
+    background-repeat: no-repeat;
+    width:  90px;
+    height: 80px;
+}
+
+.point .description {
+    color: gray;
+    margin-left: 100px;
+    margin-bottom: 70px;
+    width: 500px;
+}
+.number {
+    padding-top: 20px;
+    padding-left: 38px;
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+#advantages1-btns {
+    margin-left: 280px;
+    margin-top: -200px;
+    position: absolute;
+}
+#advantages1-img-der{
+    background-repeat: no-repeat;
+    width:  590px;
+    height: 251px;
+
+    position: relative;
+}
+#advantages1-img-info {
+    margin-left: 370px;
+    margin-top: -180px;
+    width: 500px;
+}
+#advantages1-img-der img {
+    margin-left: 350px;
+    width: 500px;
+}
+#advantages1-img-info #title {
+    color: #5FC03F;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 45px;
+}
+#advantages1-img-info #cont {
+    color: blue;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 550px;
+}
+#advantages1-points {
+    margin-left: 160px;
+    margin-bottom: 100px;
+}
+/* ---- FIN modulos de ADVANTAGES 1 ---- */
+
+/* #### Modulos de ADVANTAGES 2 #### */
+.buser-advantage2#img-izq-sup{
+    position: absolute;
+    z-index: -100;
+}
+#advantages2-content {
+    position: absolute;
+}
+
+#advantages2-title {
+    margin-left: 350px;
+    margin-top: 50px;
+}
+#advantage2-cont #title {
+    color: #5FC03F;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 480px;
+    margin-top: -450px;
+    position: absolute;
+}
+#advantage2-cont #content {
+    color: #003CFF;
+    font-size: 16px;
+    margin-left: 450px;
+    margin-top: -410px;
+    position: absolute;
+}
+
+#advantage2-cont #line-inf {
+    margin-left: 400px;
+    margin-top: -280px;
+    position: absolute;
+}
+/* ---- FIN modulos de ADVANTAGES 2 ---- */
+
+/* #### Modulos de ADVANTAGES 3 #### */
+#advantages3-content {
+    position: absolute;
+    z-index: 110;
+}
+#advantages3-title {
+    margin-left: 30px;
+}
+#advantages3-img-der{
+    background-repeat: no-repeat;
+    width:  590px;
+    height: 251px;
+    position: absolute;
+    z-index: 100;
+    margin-left: 300px;
+}
+.advantages3-img-izq {
+    position: absolute;
+    z-index: -100;
+}
+
+.advantages3-img-izq #sup img{
+    height: 1110px;
+    width: 500px;
+}
+#advantages3-img-info {
+    margin-left: 50px;
+    margin-top: -180px;
+    width: 500px;
+}
+#advantages3-img-der img {
+    width: 500px;
+}
+#advantages3-img-der img#globo {
+    width: 600px;
+    height: 200px;
+}
+#advantages3-img-der #advantages3-img-info #title {
+    color: #5FC03F;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 45px;
+}
+#advantages3-img-der #advantages3-img-info #cont {
+    color: blue;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 550px;
+    background-image:
+        -webkit-gradient(
+        linear,
+        left left,
+        left right,
+        color-stop(0, #00abeb),
+        color-stop(0.5, #fff),
+        color-stop(1, #fff));
+}
+#advantaves3-points {
+    margin-left: 250px;
+    margin-bottom: 25px;
+    margin-top: 350px;
+}
+
+#advantaves3-points .point {
+    height: 240px;
+}
+/* ----  FIN modulos de ADVANTAGES 3 ---- */
+
+/* #### Modulo de HOW IT WORKS #### */
+.how-it {
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+.how {
+    margin-top:     70px;
+    margin-bottom:  70px;
+    color: blue;
+}
+#how-1 {
+    margin-bottom: 320px;
+    margin-left: 340px;
+}
+#how-text-1 {
+    font-size: 20px;
+    text-align: right;
+    width: 200px;
+}
+#how-1-img {
+    margin-left: 240px;
+    margin-top: -50px;
+}
+#how-1-img img {
+    margin-top: 20px;
+    position: absolute;
+}
+#how-1-img #text {
+    font-size: 20px;
+    margin-left: 70px;
+    margin-top: 50px;
+    position: absolute;
+    text-align: right;
+}
+#img-how-1 {
+    margin-left: -370px;
+    position: absolute;
+}
+#how-2 {
+    margin-top: 100px;
+    margin-bottom: 180px;
+    margin-left: 90px;
+}
+#img-how-2 {
+    margin-left: 500px;
+    margin-top: -80px;
+    position: absolute;
+}
+#how-3 {
+    margin-bottom: 180px;
+    margin-left: 320px;
+    margin-top: 80px;
+}
+#img-how-3 {
+    margin-left: -370px;
+    margin-top: -80px;
+    position: absolute;
+}
+/* ---- FIN modulos de HOW IT WORKS ---- */
+
+/* #### Modulo de B-MERCHANTS #### */
+#bmerchant #register {
+    margin-left: 290px;
+    position: relative;
+    width: 900px;
+    margin-bottom: 150px;
+}
+#bmerchant #register-img-izq #inf {
+    position: absolute;
+    z-index: -10;
+}
+#bmerchant #register #content #home-text-top {
+    font-size: 27px;
+    width: 600px;
+}
+
+#bmerchant .addres input {
+    width: 100px;
+}
+
+#bmerchant-content {
+    margin-top: 30px;
+    z-index: 110;
+}
+#bmerchant-title {
+    margin-left: 30px;
+}
+#bmerchant-title img {
+    margin-top: 30px;
+    position: absolute;
+}
+#bmerchant-img-der {
+    background-repeat: no-repeat;
+    width:  590px;
+    height: 251px;
+    z-index: 100;
+    margin-left: 400px;
+}
+#bmerchant-img-info {
+    margin-left: 20px;
+    margin-top: -170px;
+    width: 500px;
+}
+#bmerchant-img-der img {
+    width: 500px;
+}
+#bmerchant-img-der img#globo {
+    width: 600px;
+    height: 200px;
+}
+#bmerchant-img-der #bmerchant-img-info #title {
+    color: #5FC03F;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 45px;
+}
+#bmerchant-img-der #bmerchant-img-info #cont {
+    color: blue;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 550px;
+    background-image:
+        -webkit-gradient(
+        linear,
+        left left,
+        left right,
+        color-stop(0, #00abeb),
+        color-stop(0.5, #fff),
+        color-stop(1, #fff));
+}
+.bmerchant-img-izq #sup {
+    margin-top: -100px;
+    position: absolute;
+    z-index: -5;
+}
+.bmerchant-img-izq {
+
+}
+#bmerchants-how-it {
+    margin-bottom: 200px;
+    margin-left: 470px;
+    margin-top: 80px;
+    width: 400px;
+}
+#bmerchants-how-it-title {
+    color: blue;
+    font-weight: bold;
+    font-size: 30px;
+}
+#bmerchants-how-it-subtitle {
+    color: blue;
+    font-size: 15px;
+}
+#bmerchants-info {
+    color: grey;
+    font-size: 14px;
+    z-index: 5;
+}
+#bmerchant-point {
+    margin-bottom: 200px;
+    margin-left: 300px;
+}
+
+.bmerchant-how-img-izq {
+    margin-top: 50px;
+    position: absolute;
+    z-index: -10;
+}
+/* ---- FIN modulos de B-MERCHANTS ---- */
+
+/* #### Modulo de CONTACT #### */
+#contact {
+    margin-left: 80px;
+}
+#contact #message {
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+#contact .error-input {
+    color: red;
+    float: right;
+    margin-left: 410px;
+    margin-top: -25px;
+    position: absolute;
+}
+#contact #contact-img-izq {
+    margin-left: -80px;
+    margin-top: 350px;
+    position: absolute;
+}
+#contact #contact-img-izq img {
+    width: 350px;
+}
+#contact-header {
+    margin-top:  40px;
+    margin-left: 230px;
+    margin-bottom: 40px;
+}
+#contact-img-der{
+    background-image: url(../images/globo.png);
+    background-repeat: no-repeat;
+    width:  590px;
+    height: 251px;
+
+    position: relative;
+}
+#contact-img-info #title {
+    position: absolute;
+    color: #00cc33;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-left: 45px;
+}
+#contact-img-info #content {
+    position: absolute;
+    color: blue;
+    font-size: 20px;
+    margin-top: 95px;
+    margin-left: 20px;
+    width: 550px;
+}
+#contact-img-info-inf {
+    position: absolute;
+    margin-top: 230px;
+    margin-left: 15px;
+    color: gray;
+    font-weight: bold;
+}
+#contact-form {
+    color: gray;
+    position: relative;
+    margin-left: 150px;
+    width: 600px;
+    margin-bottom: 100px;
+}
+#contact-form #form #title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+#contact-form #form #campo {
+    margin-top: 7px;
+    font-size: 20px;
+    width: 100%;
+
+}
+#contact-form #form #campo #label {
+    position: absolute;
+}
+#contact-form #form #campo #input {
+    border-color: #666;
+    height: 25px;
+    margin-left: 150px;
+    width: 400px;
+}
+#contact-form #form #campo input {
+    width: 400px;
+}
+#contact-form #form #info {
+    margin-top: 25px;
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+#contact-form #form #info #cb_info {
+    margin-right: 50px;
+    font-style: italic;
+    font-size: 15px;
+}
+#contact-form #form #info #cb_info input[type="checkbox"] {
+}
+#contact-form #form #info #textarea {
+    width:  555px;
+    height: 150px;
+}
+#contact-form #form #info textarea {
+    width:  100%;
+    height: 100%;
+}
+/* ---- FIN modulos de CONTACT ---- */
+
+/* #### Modulo FINANCIAL #### */
+.financial-advantages-img-izq #sup {
+    position: absolute;
+    z-index: -10;
+}
+#financial-adv-content {
+    margin-bottom: 220px;
+    margin-left: 100px;
+    margin-top: 150px;
+}
+.financial-title {
+    margin-top: 70px;
+    margin-left: 300px;
+
+}
+.financial-subtitle1 {
+    color: #84CC3B;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.financial-subtitle2 {
+    color: blue;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 60px;
+    margin-left: 95px;
+}
+.financial-descriptiontitle {
+    color: blue;
+    font-size: 28px;
+    margin-bottom: 70px;
+    width: 450px;
+}
+#financial-find .point {
+    margin-left: 200px;
+}
+#financial-find .point .description {
+    position: relative;
+    margin-left: 100px;
+    color: blue;
+    width:550px;
+    font-weight: bold;
+}
+#financial-find .title {
+    color: blue;
+    margin-left: 350px;
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-style: italic;
+
+}
+#financial-find .title .descrip-2 {
+    position: relative;
+    font-weight: bold;
+    left: 160px;
+}
+#financial-find #contact-form {
+    margin-left: 250px;
+}
+#financial-find #contact-form #form #info #textarea {
+    margin-left: 200px;
+    width: 350px;
+    height: 150px;
+}
+#financial-find #contact-form #form #info #textarea textarea {
+    width: 100%;
+    height: 100%;
+}
+#financial-find #contact-form #form #info #textarea-2 {
+    margin-left: 0px;
+    width: 550px;
+    height: 150px;
+}
+#financial-find #contact-form #form #info #textarea-2 textarea {
+    width: 100%;
+    height: 100%;
+}
+#financial-find #contact-form #form #campo #input {
+    height: 25px;
+    margin-left: 200px;
+    width: 350px;
+    border-color:#666666;
+}
+#financial-find #contact-form #form #campo #input input[type=text]{
+    width: 100%;
+}
+#financial-find {
+    margin-bottom: 100px;
+}
+.financial-find-img-izq #inf {
+    position: absolute;
+    margin-top: 1150px;
+}
+.financial-find-img-izq #inf img {
+    width: 250px;
+}
+/* ---- FIN modulo de FINANCIAL ---- */
+
+/* ---- Modulo THANK ---- */
+#thank {
+    margin-top: 100px;
+    position: relative;
+    left: 100px;
+}
+#mobbex-log {
+    position: relative;
+    margin-top: 50px;
+}
+#thank #glob {
+    background-image: url(http://mobbex.com/admin/templates/default/images/bgr_thank.png);
+    background-repeat: no-repeat;
+    height: 500px;
+    left: 200px;
+    position: absolute;
+    top: 0px;
+    width: 550px;
+}
+#thank #glob #text {
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    height: 500px;
+    left: 50px;
+    position: absolute;
+    top: 50px;
+    width: 400px;
+}
+#thank-qr {
+    margin-bottom: 100px;
+    margin-left: 600px;
+    margin-top: 40px;
+}
+/* ---- FIN modulo THANK ---- */
+
+/* #### Modulo INVESTORS #### */
+#investors {
+    margin-bottom: 150px;
+    margin-left: 300px;
+    width: 500px;
+}
+#investors #content {
+    color: grey;
+}
+#investors .point .line {
+    width: 400px;
+}
+#investors-comp-img-izq {
+    margin-left: -40px;
+    margin-top: 200px;
+    position: absolute;
+    z-index: -10;
+}
+#investors-comp-img-izq img {
+    width: 350px;
+}
+#investors .investors-title {
+    margin-left: 100px;
+    margin-top: 70px;
+    font-style: italic;
+}
+#investors .investors-descriptiontitle {
+    color: blue;
+    font-size: 28px;
+    margin-bottom: 70px;
+    width: 450px;
+}
+#investors-req {
+    margin-bottom: 100px;
+}
+#investors-req .point {
+    margin-bottom: 100px;
+    margin-left: 200px;
+}
+#investors-req .point .line {
+    margin-left: 80px;
+    width: 550px;
+}
+#investors-req .investors .point .description {
+    position: relative;
+    color: blue;
+    width: 350px;
+    font-weight: bold;
+}
+#investors-req #content {
+    color: grey;
+    position: relative;
+    width: 500px;
+}
+
+#investors-req .point .description {
+    position: relative;
+    margin-left: 100px;
+    color: blue;
+    width:550px;
+    font-weight: bold;
+}
+#investors-req .title {
+    color: blue;
+    margin-left: 350px;
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-style: italic;
+
+}
+#investors-req .title .descrip-2 {
+    position: relative;
+    font-weight: bold;
+    left: 160px;
+}
+#investors-req #contact-form {
+    margin-left: 250px;
+}
+#investors-req #contact-form #form #info #textarea {
+    margin-left: 200px;
+    width: 350px;
+    height: 150px;
+}
+#investors-req #contact-form #form #info #textarea textarea {
+    width: 100%;
+    height: 100%;
+}
+#investors-req #contact-form #form #info #textarea-2 {
+    margin-left: 0px;
+    width: 550px;
+    height: 150px;
+}
+#investors-req #contact-form #form #info #textarea-2 textarea {
+    width: 100%;
+    height: 100%;
+}
+#investors-req #contact-form #form #campo #input {
+    height: 25px;
+    margin-left: 200px;
+    width: 350px;
+    border-color:#666666;
+}
+#investors-req #contact-form #form #campo #input input[type=text]{
+    width: 100%;
+}
+#financial-find-img-izq {
+    margin-top: 1180px;
+    position: absolute;
+}
+
+#financial-find-img-izq img {
+    width: 250px;
+}
+/* ---- FIN modulo de INVESTORS ---- */
+
+#companyinfo-img-izq {
+    margin-left: -40px;
+    margin-top: 200px;
+    position: absolute;
+    z-index: -10;
+}
+#legals-img-izq {
+    margin-left: -40px;
+    margin-top: 200px;
+    position: absolute;
+    z-index: -10;
+}
+#bpoints-img-izq {
+    margin-left: -40px;
+    margin-top: 200px;
+    position: absolute;
+    z-index: -10;
+}
+input[type='text'], textarea, select {
+    border: solid 1px #999;
+}
+input[type='text'].focus, textarea.focus, select.focus {
+    border-color: #000 !important;
+}
+input[type='text'].invalid, textarea.invalid, select.invalid {
+    border-color: red;
+}
+input[type='text'].inactive, textarea.inactive, select.inactive, option.inactive {
+    color: #999;
+    font-style: italic;
+}
+input[type='text'].required, textarea.required {
+    background: url(required-input.png) right 5px no-repeat;
+}

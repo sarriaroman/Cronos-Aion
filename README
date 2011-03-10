@@ -13,9 +13,20 @@ This version has hard changes.
  - New templates structure.
  - New sections in admin panel.
  - Friendly urls.
+ 
+Version: RC 1
+Info: First Release Candidate
+
+ - Plugins
+ - New friendly engine
+ - Friendly and more secure actions url.
+ 	-> action/ACTION_FILE/ACTION_TO_DO/?PARAMETERS
+ - Administration panel changes.
+ - Installer
+ 	-> /install/
+ - API Integration.
+ - Base data.
+ - Admin user creation.
 
 To-Do:
  - Access control.
- - Plugins modules.
- - More powerful friendly engine.
- - Better administration panel.

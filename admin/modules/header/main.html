@@ -1,8 +1,14 @@
+<?php 
+    $session = check_session("admin");
+    if( $session )
+        if($_REQUEST['section']=='restore' || $_REQUEST['section']=='login')
+            header("Location: " . base_url . "admin.php"); ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Cronos {Administrative Panel}</title>
+        <title>Speryans {Administrative Panel}</title>
 
         <!-- CSS -->
 
@@ -72,4 +78,7 @@
         <div id="wrapper">
 
             <!-- h1 tag stays for the logo, you can use the a tag for linking the index page -->
-            <div id="logo"><a href="#"><span>Cronos {Admin Panel}</span></a></div>
+            <div id="logo"><a href="#"><span>Speryans {Admin Panel}</span></a></div>
+
+<?php
+    if( $session ) admin_module("main_menu"); ?>

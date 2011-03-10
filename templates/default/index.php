@@ -1,5 +1,7 @@
 <?
+    $permalinks = explode("/",$_GET['url']);
 
-    load_section("home");
-
+    if( !$permalinks[0] ) {
+        load_module("home");
+    } else load_section( $permalinks );
 ?>

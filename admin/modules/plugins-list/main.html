@@ -1,0 +1,71 @@
+<div id="sidebar">
+    <ul class="sideNav">
+        <li><a href="<?php echo base_url; ?>admin.php?section=plugins" class="active">Listado</a></li>
+        <li><span id="head"><strong>Installed plugins</strong></span></li>
+        <?php loadPluginSettings(); ?>
+    </ul>
+    <!-- // .sideNav -->
+</div>
+<!-- // #sidebar -->
+<script type="text/javascript">
+function installPlugin(dirpath) {
+        jConfirm('Are you sure to install the plugin?:\n\n', 'Confirm', function(r) {
+            if( r ) {
+                $.post("<?php echo actions_url; ?>plugins.php", {
+                    action: "install",
+                    path: dirpath
+                }, function(data){
+                    if( data.response ) {
+                        location.reload(true);
+
+                        return false;
+                    } else if( data.error != '' ) {
+                        jConfirm('Error installing, please check your plugin:\n\nError: ' + data.error + data, 'Install Error', function(ref) {
+                            if( ref ) {}
+                        });
+                    }
+                    jConfirm('Error uninstalling, please check your plugin:\n\nError: ' + data, 'Uninstall Error', function(ref) {
+                        if( ref ) {}
+                    });
+                }, 'json' );
+            }
+        });
+        return false;
+    };
+
+    function uninstallPlugin(pid) {
+        jConfirm('Are you sure to uninstall the plugin?:\n\n', 'Confirm', function(r) {
+            if( r ) {
+                $.post("<?php echo actions_url; ?>plugins.php", {
+                    action: "uninstall",
+                    id: pid
+                }, function(data){
+                    if( data.response ) {
+                        location.reload(true);
+
+                        return false;
+                    } else if( data.error != '' ) {
+                        jConfirm('Error uninstalling, please check your plugin:\n\nError: ' + data.error, 'Uninstall Error', function(ref) {
+                            if( ref ) {}
+                        });
+                    }
+                    jConfirm('Error uninstalling, please check your plugin:\n\nError: ' + data, 'Uninstall Error', function(ref) {
+                        if( ref ) {}
+                    });
+                }, 'json' );
+            }
+        });
+        return false;
+    };
+</script>
+
+<!-- h2 stays for breadcrumbs -->
+<h2><a href="#">Plugins</a> &raquo; <a href="#" class="active">Listado de Plugins</a></h2>
+
+<div id="main">
+    <h3>Plugins</h3>
+    <table cellpadding="0" cellspacing="0" class="table">
+        <?php loadPlugins(); ?>
+    </table>
+</div>
+<!-- // #main -->

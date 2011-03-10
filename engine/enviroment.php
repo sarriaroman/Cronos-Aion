@@ -37,6 +37,10 @@ define("modules_dir", 	$_SERVER['DOCUMENT_ROOT'] . "/{$base}/"
                         . template_dir . "/modules/" ,                              false );
 define("modules_url", 	base_url . template_dir . "/modules/" ,                     false );
 
+// Plugins
+define("plugins_dir", 	$_SERVER['DOCUMENT_ROOT'] . "/{$base}/" . "plugins/" ,      false );
+define("plugis_url", 	base_url . "plugins/" ,                     false );
+
 // Sections
 define("section_dir", 	$_SERVER['DOCUMENT_ROOT'] . "/{$base}/"
                         . template_dir . "/sections/" ,                             false );
@@ -45,9 +49,6 @@ define("section_url", 	base_url . template_dir . "/sections/" ,                 
 // Anothers
 define("javascript_url", base_url . "javascript/",                                  false );
 define("actions_url", base_url . "actions/",                                        false );
-
-// Friendly url
-define("friendly_base", base_url . $friendly . "/", false);
 
 /**
  * Error Handling Values

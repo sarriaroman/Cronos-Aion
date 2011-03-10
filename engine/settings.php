@@ -6,19 +6,24 @@
 	 *
 	 * Rom�n A. Sarria
 	 */
-	//global $host, $db, $user, $key, $dtype, $lng_file, $symbol;
+	global $host, $db, $user, $key, $dtype, $lng_file, $symbol;
+        
+        global $CONFIG;
+
+        if( is_null( $CONFIG ) )
+            $CONFIG = new stdClass ();
 
 	// Host
 	$host = "localhost";
 
 	// Base de datos
-	$db = "localdb";
+	$db = "test";
 
 	// Usuario
-	$user = "localuser";
+	$user = "test";
 
 	// Clave
-	$key = "password";
+	$key = "FTesting";
 
         // Admin email
 
@@ -30,17 +35,15 @@
         $erroremail = false;
         $errorfile = true;
 
-	// Lenguaje
+	// Lenguage
 	$lng_file = "es_ar";
+        $CONFIG->lang = "en";
 
 	// Prefijo
 	$dbprefix = "";
 
 	// Base del sitio
-	$base = "base";
-
-        // Base de soporte de reescritura
-        $friendly = "f";
+	$base = "framework";
 
 	// Template schema
 	$theme = "default";

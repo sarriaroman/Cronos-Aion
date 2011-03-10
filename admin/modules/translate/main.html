@@ -1,0 +1,62 @@
+<script type="text/javascript">
+    function edit(id) {
+        $("#text_"+id).show();
+        $("#sav_"+id).show();
+        $("#text_"+id).focus();
+
+        $("#info_"+id).hide();
+        $("#edi_"+id).hide();
+    }
+
+    function save(id) {
+        //text=$('textarea#'+id).val();
+        text=CKEDITOR.instances[id].getData();
+        $.post('<?php echo actions_url; ?>admin.php?action=savtag',{
+            id:   id,
+            cont: text},
+            function(data){
+                if(data.result=='ok') {
+                    $("#info_"+id).html(data.message);
+                    alert('Guardado!');
+                }
+                else alert(data.message)
+
+                //$("#info_"+id).show();
+                //$("#edi_"+id).show();
+
+                //$("#text_"+id).hide();
+                //$("#sav_"+id).hide();
+        }, 'json');
+    }
+</script>
+
+<style type="text/css">
+    checklabel {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 3px;
+        clear: both;
+    }
+</style>
+
+<div id="sidebar">
+    <ul class="sideNav">
+        <?php loadSideSections() ?>
+    </ul>
+    <!-- // .sideNav -->
+</div>
+<!-- // #sidebar -->
+
+<!-- h2 stays for breadcrumbs -->
+
+<?php printTagHeader() ?>
+
+
+<div id="main">
+
+    <table cellpadding="0" cellspacing="0" id="profiles" class="table" widht="300">
+        <?php editTag() ?>
+    </table>
+</div>

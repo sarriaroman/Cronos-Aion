@@ -1,0 +1,98 @@
+root { 
+    display: block;
+}
+
+.main {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    width: 590px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #F8F8F8;
+}
+
+.title {
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 13px;
+    background-color: #222;
+}
+
+.container {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    padding: 5px;
+}
+
+p span {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #333;
+}
+
+span {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #333;
+}
+
+input[type=text] {
+    background-color: white;
+    border: 1px solid #222;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    width: 220px
+}
+
+input[type=password] {
+    background-color: white;
+    border: 1px solid #222;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    width: 220px
+}
+
+.step {
+    border-radius: 10px;
+    float:left;
+    margin-left: 3px;
+    background-color: black;
+    color: lightgray;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.step-active {
+    border-radius: 10px;
+    float:left;
+    margin-left: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: white;
+    color: black;
+}
+
+.msg {margin:15px 0; padding:10px; padding-left:35px;}
+.msg.warning {background:url("../img/ico-warning.png") 10px 50% no-repeat;}
+.msg.info {background:url("../img/ico-info.png") 10px 50% no-repeat;}
+.msg.done {background:url("../img/ico-done.png") 10px 50% no-repeat;}
+.msg.error {background:url("../img/ico-delete.png") 10px 50% no-repeat;}
+.msg.loading {background:url("../img/mini_loading.gif") 10px 50% no-repeat;}
+
+/* =============================================================================
+MESSAGES
+============================================================================= */
+
+.msg.warning {border:2px solid #F2DD8C; background-color:#FFF5CC;}
+.msg.warning a {color:#df0000;} .msg.warning a:hover, .msg.warning a:active, .msg.warning a:focus {color:#303030;}
+.msg.info {border:2px solid #B8E2FB; background-color:#E8F6FF;}
+.msg.done {border:2px solid #BBDF8D; background-color:#EAF7D9;}
+.msg.error {border:2px solid #FFAEAE; background-color:#FEEBEB;}
+.msg.loading {border:2px solid #B8E2FB; background-color:#E8F6FF;}

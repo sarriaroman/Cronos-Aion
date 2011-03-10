@@ -1,4 +1,13 @@
 <?php
+/**
+* This class handles and logs the error that occurs in the project
+*
+* @author Nitesh Apte
+* @copyright 2010
+* @version 1.0
+* @access private
+* @License GPL
+*/
 
 class ErrorLogging
 {
@@ -79,7 +88,7 @@ class ErrorLogging
 	 * @param none
 	 * @return none
 	 */
-	public function __construct()
+	private function __construct()
 	{
 		error_reporting(1);
 		set_error_handler(array($this,'_customError'), E_ALL ^ E_NOTICE);
@@ -95,7 +104,7 @@ class ErrorLogging
 	 * @param Int $errLine Error line
 	 * @return none
 	 */
-	public function _customError($errNo, $errStr, $errFile, $errLine)
+	private function _customError($errNo, $errStr, $errFile, $errLine)
 	{
 		if(error_reporting()==0)
 		{
@@ -136,7 +145,7 @@ class ErrorLogging
 	 * @param $_entriesMade Irrelevant entries in debug_backtrace, first two characters 
 	 * @return  
 	 */
-	public function _debugBacktrace($_entriesMade)
+	private function _debugBacktrace($_entriesMade)
 	{
 		$this->_traceArray = debug_backtrace();
 		
@@ -195,7 +204,7 @@ class ErrorLogging
 		return $this->_traceMessage;
 	}
 	
-	public function _fatalError()
+	private function _fatalError()
 	{
 		$this->_lastError = error_get_last();
 		if($this->_lastError['type'] == 1 || $this->_lastError['type'] == 4 || $this->_lastError['type'] == 16 || $this->_lastError['type'] == 64 || $this->_lastError['type'] == 256 || $this->_lastError['type'] == 4096)

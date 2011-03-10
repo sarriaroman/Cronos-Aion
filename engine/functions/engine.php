@@ -12,15 +12,15 @@
  * @param <String> $filename Si el archivo html del modulo no se llama main.html
  * @param <String> $parameters Envio de parametros al php. Se usa la logica de php: main.php?[nombre=variable]
  */
-function load_module( $name, $filename = "", $parameters = "" ) {
-    if( file_exists( modules_dir . $name . "/main.php" ) ) {
-        if( $parameters != "" ) {
-           include( modules_url . $name . "/main.php" . $parameters );
-        } else {
-            include( modules_dir . $name . "/main.php" );
-        }
+function load_module( $name, $plugin = 'main', $filename = "" ) {
+    if( $plugin == "" || !isset ($plugin) ) $plugin = 'main';
+
+    if( file_exists(get_module_dir($name, $plugin) . "/main.php" ) ) {
+        include( get_module_dir($name, $plugin) . "/main.php" );
     }
-    include( modules_dir . $name . "/" . ( ($filename == "") ? "main.html" : $filename ) );
+    if(file_exists( ( $mainfile = get_module_dir($name, $plugin) . "/" . ( ($filename == "") ? "main.html" : $filename ) ) ) ) {
+        include( $mainfile );
+    }
 }
 
 /**
@@ -33,8 +33,9 @@ function load_module( $name, $filename = "", $parameters = "" ) {
  *
  * @param <type> $url String o Array con la seccion deseada.
  */
-function load_section( $url ) {
-    include( section_dir . ( ( is_array( $url ) ) ? $url[0] : $url ) . "/main.php" );
+function load_section( $url, $plugin = 'main' ) {
+    if( $plugin == "" || !isset ($plugin) ) $plugin = 'main';
+    include( ( ( is_array( $url ) ) ? get_section_dir($url[1], $url[0]) : get_section_dir($url, $plugin) ) . "/main.php" );
 }
 
 /**
@@ -47,11 +48,14 @@ function load_section( $url ) {
  * @param <type> $function Nombre de la carpeta que lo contiene
  * @param <type> $filename Si el archivo main.html se llama distinto.
  */
-function admin_module( $function, $filename = "" ) {
-    if( file_exists( admin_modules_dir . $function . "/main.php" ) ) {
-        include( admin_modules_dir . $function . "/main.php" );
+function admin_module( $function, $plugin = 'main', $filename = "" ) {
+    if( $plugin == "" || !isset ($plugin) ) $plugin = 'main';
+    if( file_exists(get_admin_module_dir($function, $plugin) . "/main.php" ) ) {
+        include( get_admin_module_dir($function, $plugin) . "/main.php" );
     }
-    include( admin_modules_dir . $function . "/" . ( ($filename == "") ? "main.html" : $filename ) );
+    if( file_exists(get_admin_module_dir($function, $plugin) . "/" . ( ($filename == "") ? "main.html" : $filename ) ) ) {
+        include( get_admin_module_dir($function, $plugin) . "/" . ( ($filename == "") ? "main.html" : $filename ) );
+    }
 }
 
 /**
@@ -59,8 +63,9 @@ function admin_module( $function, $filename = "" ) {
  *
  * @param <type> $url
  */
-function admin_section( $url ) {
-    include( admin_section_dir . ( ( is_array( $url ) ) ? $url[0] : $url ) . "/main.php" );
+function admin_section( $url, $plugin = 'main' ) {
+    if( $plugin == "" || !isset ($plugin) ) $plugin = 'main';
+    include( ( ( is_array( $url ) ) ? get_admin_section_dir($url[0], $plugin) : get_admin_section_dir($url, $plugin) ) . "/main.php" );
 }
 
 function put_vars( $v ) {

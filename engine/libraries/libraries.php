@@ -13,6 +13,20 @@
 		
 		return $the_array;
 	}
+
+        function get_directories_in_directory( $directory ) {
+		$the_array = Array();
+		$handle = opendir( $directory );
+		while (false !== ($file = readdir($handle))) {
+   			if ($file != "." && $file != ".." && is_dir( $directory . $file )) {
+   				$the_array[] = $file;
+	   		}
+		}
+		closedir($handle);
+		sort ($the_array);
+
+		return $the_array;
+	}
 	
 	function getIP() {
     	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {

@@ -1,0 +1,174 @@
+
+<script type="text/javascript">
+    $(function(){
+
+        $.uniform.restore("select");
+
+        $("#data").submit(function(){
+            if( $("input#name").val() == "" ) {
+                jAlert("El nombre no puede quedar vacio...", "Revise...");
+                return false;
+            }
+            if( $("#revenues").val() == "-1" ) {
+                jAlert("Debe seleccionar un tipo de ganacia...", "Revise...");
+                return false;
+            }
+
+            $(this).ajaxSubmit({
+                url: "<?php echo actions_url; ?>admin.php?action=addtype",
+                dataType: "json",
+                beforeSubmit: function() {
+                    $("#loading").show();
+                    $("#addbutton").hide();
+                },
+                success: function( data ) {
+                    if( data.error == "-1" ) {
+                        location.reload(true);
+                    } else {
+                        jAlert( data.error );
+                        $("#loading").hide();
+                        $("#addbutton").show();
+                    }
+                }
+            });
+
+            return false;
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    function moveUp(table, position, div) {
+        $(div).load("<?php echo actions_url; ?>admin.php?action=moveup&table=" + table + "&position=" + position);
+    };
+
+    function moveDown(table, position, div) {
+        $(div).load("<?php echo actions_url; ?>admin.php?action=movedown&table=" + table + "&position=" + position);
+    };
+</script>
+
+<script type="text/javascript">
+    function deleteType(id, text) {
+        jConfirm('Esta seguro que desea eliminar lo siguiente:\n\n' + text, 'Confirmación', function(r) {
+            if( r ) {
+                $.get("<?php echo actions_url; ?>admin.php", {
+                    action: "deletetype",
+                    id: id
+                }, location.reload(true) );
+            }
+        });
+    };
+
+    function addRevenueSelector() {
+        $("#revenuesselectors").append('<div style="border-bottom: silver dashed 1px; overflow: hidden; display: block; clear: both; margin-bottom: 5px;"><p><select name="revenuesa[]" id="revenuesa"><option value="-1">Seleccione el tipo de ganacia</option><?php loadRevenues();  ?></select><select name="condition[]" id="condition"><option value="-1">Ninguna</option><option value=">">Mayor (>) </option><option value="<">Menor (<) </option><option value=">=">Mayor o igual (>=) </option><option value="<=">Menor o igual (<=) </option><option value="=">Igual (=) </option></select><select name="revenuesb[]" id="revenuesb"><option value="-1">Seleccione el tipo de ganacia</option><?php loadRevenues();  ?></select></p><p><label>Si la condición fuese seleccionada la parte verdadera aplica la primera condición y la falsa la segunda.</label></p><p><label>Porcentaje a cargo del Emisor: </label><input type="text" name="emitterpercentage[]" class="text-long" id="emitterpercentaje" /></p><p><label>Porcentaje a cargo del Receptor: </label><input type="text" name="receiverpercentage[]" class="text-long" id="receiverpercentaje" /></p></div>');
+    };
+</script>
+
+<style type="text/css">
+    .checklabel {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 3px;
+        clear: both;
+    }
+
+    #revenues {
+        clear: both;
+    }
+</style>
+
+<div id="sidebar">
+    <ul class="sideNav">
+        <li><a href="<?php echo base_url; ?>admin.php?section=<?php echo $_GET['section']; ?>" class="active">Tipos de Operación</a></li>
+        <li><a href="<?php echo base_url; ?>admin.php?section=<?php echo $_GET['section']; ?>&module=revenues">Ganacias</a></li>
+    </ul>
+    <!-- // .sideNav -->
+</div>
+<!-- // #sidebar -->
+
+<!-- h2 stays for breadcrumbs -->
+<h2><a href="#">Operaciones</a> &raquo; <a href="#" class="active">Tipos de Operación</a></h2>
+
+<div id="main">
+    <h3>Carga de Tipos</h3>
+
+    <form id="data" method="post" class="jNice">
+        <fieldset>
+
+            <input name="typeid" type="hidden" id="typeyid" />
+            <p>
+                <label>Nombre: </label>
+                <input type="text" name="name" class="text-long" id="name" />
+            </p>
+            <p>
+                <label>Tipo de operacion sobre el emisor: ( Si no se selecciona se toma la operacion contraria )</label>
+                <label class="checklabel"><input type="checkbox" name="emitterdebit" value="checked" id="emitterdebit" />Debito</label>
+            </p>
+            <p>
+                <label>Tipo de operacion sobre el receptor: ( Si no se selecciona se toma la operacion contraria )</label>
+                <label class="checklabel"><input type="checkbox" name="receiverdebit" value="checked" id="receiverdebit" />Debito</label>
+            </p>
+            <p>
+                <label>Codigo facil: ( Alfanumerico: 10 letras o numeros ) </label>
+                <input type="text" name="code" class="text-long" id="code" />
+            </p>
+            <p>
+                <label>Tipo de Ganacia de la operación: </label>
+            <div id="revenuesselectors">
+                <div style="border-bottom: silver dashed 1px; overflow: hidden; display: block; clear: both; margin-bottom: 5px;">
+                    <p>
+                        <select name="revenuesa[]" id="revenuesa">
+                            <option value="-1">Seleccione el tipo de ganacia</option>
+                            <?php loadRevenues();  ?>
+                        </select>
+                        <select name="condition[]" id="condition">
+                            <option value="">Ninguna</option>
+                            <option value=">">Mayor (>) </option>
+                            <option value="<">Menor (<) </option>
+                            <option value=">=">Mayor o igual (>=) </option>
+                            <option value="<=">Menor o igual (<=) </option>
+                            <option value="=">Igual (=) </option>
+                        </select>
+                        <select name="revenuesb[]" id="revenuesb">
+                            <option value="-1">Seleccione el tipo de ganacia</option>
+                            <?php loadRevenues();  ?>
+                        </select>
+                    </p>
+                    <p>
+                        <label>Si la condición fuese seleccionada la parte verdadera aplica la primera condición y la falsa la segunda.</label>
+                    </p>
+                    <p>
+                        <label>Porcentaje a cargo del Emisor: </label>
+                        <input type="text" name="emitterpercentage[]" class="text-long" id="emitterpercentaje" />
+                    </p>
+                    <p>
+                        <label>Porcentaje a cargo del Receptor: </label>
+                        <input type="text" name="receiverpercentage[]" class="text-long" id="receiverpercentaje" />
+                    </p>
+                </div>
+            </div>
+
+            <a onclick="addRevenueSelector();" style="text-decoration: none; cursor: pointer; color: #c5a059; display: block; margin-top: 10px; margin-left: 5px; clear: both;">Agregar</a>
+            </p>
+
+            <div id="loading" style="display: none;">
+                <img src="<?php echo admin_base_url; ?>images/loading.gif"/>
+            </div>
+
+            <div id="addbutton">
+                <input type="submit" id="submit" value="Guardar" />
+            </div>
+        </fieldset>
+    </form>
+
+    <div id="presponse"></div>
+
+    <h3>Tipos de operacion</h3>
+
+    <table cellpadding="0" cellspacing="0" id="profiles" class="table">
+        <?php loadTypes() ?>
+    </table>
+</div>

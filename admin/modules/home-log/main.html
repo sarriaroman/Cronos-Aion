@@ -14,84 +14,12 @@
 <div id="main">
     <h3>Registro de Cambios</h3>
     <table cellpadding="0" cellspacing="0" class="table">
-        <tr>
-            <td>Nuevo Panel de Administración</td>
-            <td class="action">
-                <!--<a href="#" class="view">View</a>
-                <a href="#" class="edit">Edit</a>-->
-                <span class="delete">(15/03/2010)</span>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>Mejoras y fix's en la Carga de Temas</td>
-            <td class="action">
-                <span class="delete">(15/03/2010)</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Correcciones varias y de estabilidad</td>
-            <td class="action">
-                <span class="delete">(15/03/2010)</span>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>Agregada la carga de archivos de imagen en los temas</td>
-            <td class="action">
-                <span class="delete">(19/03/2010)</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Cambio del modulo de carga por problemas varios</td>
-            <td class="action">
-                <span class="delete">(19/03/2010)</span>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>Correcciones generales a la seccion Temas</td>
-            <td class="action">
-                <span class="delete">(19/03/2010)</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Nueva division de carpeta en directorio post (Gallery|Thumbnail)</td>
-            <td class="action">
-                <span class="delete">(19/03/2010)</span>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>Vista previa del Thumbnail al subirlo</td>
-            <td class="action">
-                <span class="delete">(19/03/2010)</span>
-            </td>
-        </tr>
-        <tr>
-            <td>Se termina la carga de post incluyendo todo lo necesario</td>
-            <td class="action">
-                <span class="delete">(21/03/2010)</span>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>Se corrigen errores varios</td>
-            <td class="action">
-                <span class="delete">(21/03/2010)</span>
-            </td>
-        </tr>
+        <?php loadLog(); ?>
     </table>
 
     <h3>To-Do</h3>
     <table cellpadding="0" cellspacing="0" class="table">
-        <tr>
-            <td>Modificar y cambiar de subcategoria los temas</td>
-            <td class="action">
-                <span class="delete">(21/03/2010)</span>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>Agregar cuadro de envio de email y campos a la base de datos</td>
-            <td class="action">
-                <span class="delete">(21/03/2010)</span>
-            </td>
-        </tr>
+        <?php loadTodoLog(); ?>
     </table>
 </div>
 <!-- // #main -->

@@ -1,0 +1,112 @@
+
+<script type="text/javascript">
+    $(function(){
+
+        $("#data").submit(function(){
+            if( $("input#name").val() == "" ) {
+                jAlert("El nombre no puede quedar vacio...", "Revise...");
+                return false;
+            }
+            if( $("textarea#content").val() == "" ) {
+                jAlert("El contenido no puede quedar vacio...", "Revise...");
+                return false;
+            }
+
+            $.post('<?php echo actions_url; ?>admin.php?action=savpost',{
+                id:   '-1',
+                tit:  $("input#name").val(),
+                cont: $("textarea#content").val()},
+                function(data){
+                    if(data.result=='ok') {
+                        location.reload(true);
+                    }
+                    else alert(data.message)
+            }, 'json');
+
+            return false;
+        });
+    });
+
+    function editPost(id) {
+        $("#input_"+id).show();
+        $("#txta_"+id).show();
+        $("#btn_sav_"+id).show();
+
+        $("#info_input_"+id).hide();
+        $("#info_txta_"+id).hide();
+        $("#btn_edi_"+id).hide();
+    }
+
+    function save(id) {
+        $.post('<?php echo actions_url; ?>admin.php?action=savpost',{
+            id:   id,
+            tit:  $('input#in_'+id).val(),
+            cont: $('textarea#tx_'+id).val()},
+            function(data){
+                if(data.result=='ok') {
+                    $("#info_input_"+id).html(data.tit);
+                    $("#info_txta_"+id).html(data.cont);
+
+                    alert('Guardado!');
+                }
+                else alert(data.message)
+        }, 'json');
+    }
+</script>
+
+<style type="text/css">
+    checklabel {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 3px;
+        clear: both;
+    }
+</style>
+
+<div id="sidebar">
+    <ul class="sideNav">
+        <li><a href="<?php echo base_url; ?>admin.php?section=<?php echo $_GET['section']; ?>" class="active">Posts</a></li>
+    </ul>
+    <!-- // .sideNav -->
+</div>
+<!-- // #sidebar -->
+
+<!-- h2 stays for breadcrumbs -->
+<h2><a href="#">Post Manager</a> &raquo; <a href="#" class="active">Nuevo</a></h2>
+
+<div id="main">
+    <h3>Nuevo Post:</h3>
+
+    <form id="data" method="post" class="jNice">
+        <fieldset>
+
+            <input name="userid" type="hidden" id="userid" />
+            <p>
+                <label>Título: </label>
+                <input type="text" name="name" class="text-long" id="name" style="width: 90%;"/>
+            </p>
+            <p>
+                <label>Contenido: </label>
+                <textarea id="content" name="content" class="text-long" style="width: 90%;" ></textarea>
+            </p>
+
+            <div id="loading" style="display: none;">
+                <img src="<?php echo admin_base_url; ?>images/loading.gif"/>
+            </div>
+
+            <div id="addbutton">
+                <input type="submit" id="submit" value="Guardar" />
+            </div>
+        </fieldset>
+    </form>
+
+    <div id="presponse"></div>
+
+    <h3>Posts</h3>
+
+    <table cellpadding="0" cellspacing="0" id="profiles" class="table">
+        <?php loadTags(); ?>
+    </table>
+</div>

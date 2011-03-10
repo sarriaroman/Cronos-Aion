@@ -1,7 +1,5 @@
 <?php admin_module("header"); ?>
 
-<?php admin_module("navbar"); ?>
-
 <div id="containerHolder">
     <div id="container">
 

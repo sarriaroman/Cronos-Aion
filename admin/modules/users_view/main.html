@@ -1,0 +1,91 @@
+<?php
+$user = new Users($_REQUEST['id']);
+?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#volver").click(function(){
+            location = "<?php echo base_url; ?>admin.php?section=<?php echo $_GET['section']; ?>";
+        });
+    });
+
+    function edit(id) {
+        $("#text_"+id).show();
+        $("#sav_"+id).show();
+        $("#text_"+id).focus();
+
+        $("#info_"+id).hide();
+        $("#edi_"+id).hide();
+    }
+
+    function save(id) {
+        $.post('<?php echo actions_url; ?>admin.php?action=savtag',{
+            id:   id,
+            cont: $('textarea#'+id).val()},
+        function(data){
+            if(data.result=='ok') {
+                $("#info_"+id).html(data.message);
+                alert('Guardado!');
+            }
+            else alert(data.message);
+        }, 'json');
+    }
+</script>
+
+<style type="text/css">
+    checklabel {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 3px;
+        clear: both;
+    }
+</style>
+
+<div id="sidebar">
+    <ul class="sideNav">
+        <li><a href="<?php echo base_url; ?>admin.php?section=<?php echo $_GET['section']; ?>" class="active">Translate</a></li>
+    </ul>
+    <!-- // .sideNav -->
+</div>
+<!-- // #sidebar -->
+
+<div id="main">
+    <h3>Información del Usuario</h3>
+
+    <form id="data" method="post" class="jNice">
+        <fieldset>
+            <div style="float: right; border: #D8D8D8 1px solid; background-color: white; padding: 4px;">
+                <img src="<?=get_gravatar($user->email, 100); ?>" />
+            </div>
+            <div style="float: left;">
+            <p>
+                <label><storng>Nombre:</storng></label>
+                <?=$user->name;?>
+            </p>
+            <p>
+                <label><storng>Apellido:</storng></label>
+                <?=$user->lastname;?>
+            </p>
+            <p>
+                <label><storng>Email:</storng></label>
+                <?=$user->email;?>
+            </p>
+            <p>
+                <label><storng>DNI:</storng></label>
+                <?=$user->DNI;?>
+            </p>
+            <p>
+                <label><storng>Cumpleaños:</storng></label>
+                <?=$user->birthdate;?>
+            </p>
+            </div>
+        </fieldset>
+    </form>
+
+    <div id="presponse"></div>
+
+    <div id="addbutton">
+        <input id="volver" type="submit" id="submit" value="Volver" />
+    </div>
+</div>
